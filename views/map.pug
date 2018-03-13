@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  style(type="text/css").
+
+    #map {
+      width: 50%;
+      height: 400px;
+      margin: 50px;
+    }
+  
+  h2= "We should see a map here"
+  
+  p= "Bladiebla lalala something about the map and the markers"
+  
+  #map
+  a(href='/') 
+      | BAck to the home page &raquo;
+      
+      
+block scripts
+  script(src='/google-map.js')
+  script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` async defer)
+  

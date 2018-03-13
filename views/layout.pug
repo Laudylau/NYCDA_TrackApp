@@ -1,0 +1,110 @@
+//- MAIN LAYOUT FOR ALLE PAGE STRUCTURE
+
+doctype html
+html
+  
+  head
+    title Review App Laura
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Permanent+Marker')
+    link(rel='stylesheet' href="https://fonts.googleapis.com/css?family=Noto+Sans")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+      //- to do week 4: fill in the metas
+    //-link(rel='stylesheet', href='/styles/layout.css', type='text/css')
+      
+  
+  body
+    
+    block header
+      
+      style(type="text/css").
+        
+        body {
+          font-family: Noto Sans;
+          color: #2B303A;
+        }
+        
+        h1 {
+          font-size: 30px;
+        }
+        
+        .headermain {
+          box-sizing: borderbox;
+        }
+        
+        #headertitle {
+          box-sizing: border-box;
+          width: 75%;
+          margin: 0px;
+          font-family: Permanent Marker;
+          font-size: 80px;
+          color: #ED3B3B;
+          text-align: center;
+        }
+        
+        #headerimage {
+          box-sizing: border-box;
+          width: 25%;
+          height: auto;
+        }
+        
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #EDD711;
+        }
+        
+        li {
+            float: left;
+        }
+        
+        li a {
+            display: block;
+            color: #2B303A;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        li a:hover {
+            background-color: #111;
+        }
+      
+      header  
+        div.headermain
+            img#headerimage(src = "https://www.rug.nl/feb/career-services/img/topic-relatedinfo/topic-icoon-wegwijzer.jpg")
+            h1#headertitle
+                | PADVINDER
+        nav.nav
+          ul.nav_list
+            li.nav_item
+              a(href='/')
+                | home
+            li.nav_item
+              a(href='/locations')
+                | locations
+            li.nav_item
+              a(href='/map')
+                | map
+
+      //- to do: make header with icons and search bar, a login and register
+                  
+    block content
+      //- block for the content of the inheriting templates
+        p This is the default! So if you see this text something is going wrong with loading the block content of the inheriting pug templates!
+
+    block footer 
+    
+      footer
+        .socialmediabuttons
+          a(href="#" class="fa fa-facebook")
+          a(href="#" class="fa fa-twitter")
+          a(href="#" class="fa fa-google")
+          a(href="#" class="fa fa-linkedin")
+          a(href="#" class="fa fa-youtube")
+          a(href="#" class="fa fa-instagram")
+      
+    block scripts
+      //- block for the scripts of the inheriting templates

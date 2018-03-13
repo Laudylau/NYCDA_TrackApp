@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  
+  style(type="text/css").
+
+    .linkTiles {
+        width: 200px;
+        height: 200px;
+        background-image: url("https://maxcdn.icons8.com/Share/icon/Transport/bicycle1600.png")
+        border: 1px solid #c3c3c3;
+
+    }
+    
+    #goToMap {
+        background-color: red;
+    }
+  
+  h1= "Find cool paths to walk or bike here and read the reviews and tips of other people!"
+  h2= "Bonjour! I am Laura."
+  p= "Something about the app bladiebla some nice introtext"
+  br
+    
+  div.linkTiles
+    div#goToMap
+      a(href='/map') 
+          | Check out the map over here &raquo;
+    div#goToLocations
+      a(href='/locations') 
+          | Check out all the locations over here &raquo;
+        

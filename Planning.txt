@@ -1,0 +1,37 @@
+
+Final project: Kind of Review-website of fun places in the Dordogne, for example restaurants, castles etc
+
+Week 1:
+1. Create local and remote git repo
+    - git init etc
+    - make .gitignore file to exclude files from git (mainly node_modules folder)
+    - add remote repository and push local repo to GitHub server
+
+2. Set up basics for project
+    - Create package.json
+    - Create Express server and setup Pug as template engine
+    - create 4 GET routes to show in the browser: landingpage, mappage, alllocationspage, locationpage
+    - create pug views for the GET routes and for the extends layout pug file
+    - create in the server.js an array of locations untill database is ready
+    - Create layout header in the layout pug
+
+3. The Google maps part is main part of site. Create the Google MAaps API functionality
+    - Show Map on page with two markers with the castles
+    - in scripts folder create the maps functionality in google-maps.js
+    - in js file make an array for the coordinates of two castles, later this will go in dbase
+
+4. Review with Gabor - also about planning week 2 (pull everything in Github)
+
+Week 2:
+
+1.
+    // define steps
+2. Create part to make comments about the locations
+    // define steps
+3. Create content and design for the landing page
+    // define steps
+
+
+Week 4: to do
+- fill in metas in head of layout pug
+- put all the ccs in a file together (so not inline)

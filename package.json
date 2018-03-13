@@ -1,0 +1,16 @@
+{
+  "name": "2018_nycda_final",
+  "version": "1.0.0",
+  "description": "Location review app",
+  "main": "server.js",
+  "scripts": {},
+  "author": "Laura Wille",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.1",
+    "pug": "^2.0.1",
+    "sqlite": "^2.9.1"
+  }
+}
