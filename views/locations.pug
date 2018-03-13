@@ -3,14 +3,23 @@ extends layout
 block content
   
   style(type="text/css").
+    
     .postblock {
+      box-sizing: border-box;
+      margin: 20px;
       display: inline-block;
-      width: 250px;
+      width: 300px;
     }
     
     .postblock img {
       width: 200px;
       height: 150px;
+    }
+    
+    span {
+      border: solid;
+      border-color: red;
+      display: inline-block;
     }
     
   h1="Here are all the locations on my site"
@@ -19,11 +28,28 @@ block content
       | Back to the home page &raquo;
   br
 
-  each location in locations
-      
+  //- each location in locations
+  //- 
+  //-   .postblock
+  //-     h3= location.name
+  //-     img(src=location.image)
+  //-     p= location.text
+  //-     a(href= `/locations/${location.id}`)
+  //-           | Read More &raquo;
+  
+
+  each track in tracks
+  
     .postblock
-      h3= location.name
-      img(src=location.image)
-      p= location.text
-      a(href= `/locations/${location.id}`) 
+      h3#trackname=track.track_name
+      .tags
+        span#trackType=track.track_type
+        span#regionName=track.region_name
+        span#placeName=track.place_name
+        span#trackKm=track.track_length_km
+        span#trackTime=track.track_length_time
+        span#trackLevel=track.track_level
+      img(src = track.image_link)
+      p#trackintro=track.intro
+      a(href= `/locations/${track.id}`) 
               | Read More &raquo;

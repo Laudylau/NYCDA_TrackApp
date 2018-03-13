@@ -1,0 +1,29 @@
+extends layout
+
+block content
+
+  style(type="text/css").
+    .postblock {
+      display: inline-block;
+      width: 250px;
+    }
+
+    .postblock img {
+      width: 200px;
+      height: 150px;
+    }
+
+  h1="Here are all the locations on my site"
+
+  a(href='/')
+      | Back to the home page &raquo;
+  br
+
+  each location in locations
+
+    .postblock
+      h3= location.name
+      img(src=location.image)
+      p= location.text
+      a(href= `/locations/${location.id}`)
+              | Read More &raquo;

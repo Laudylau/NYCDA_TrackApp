@@ -6,16 +6,15 @@ const express = require("express");
 const server = express();
 
 // Installed the sqlite module (in the folder is the sqlite3.exe file)
-//Todo: create dbase and link it to server before listening to port
 const sqlite = require("sqlite");
 let g_db = null;
 
 // Required the Node module body-parser to parse incoming request bodies in middleware (through the req.body property)
 const bodyparser = require("body-parser");
 
-// server.use(bodyParser.urlencoded({
-//   extended: true
-// }));
+server.use(bodyparser.urlencoded({
+  extended: true
+}));
 
 // Installed the template engine PUG and store the module in a variable
 const pug = require("pug");
@@ -35,7 +34,8 @@ server.use(express.static(__dirname + '/scripts'))
 // //Store all CSS in Styles folder.
 // server.use(express.static(__dirname + '/images'))
 
-// todo: database, for now an array with objects
+// For testing now an array with objects
+// NOW IT RUNS ON THE DBASE
 let locationDatabase = {
     1: {
         id: 1,
@@ -70,10 +70,32 @@ server.get('/', (req, res) => {
     res.render('index');
 });
 
-//Set the route for the view with all the locations
-server.get('/locations', async (req, res) => {
-    res.render('locations', {locations: Object.values(locationDatabase)});   // in between curly braces is the optional parameter to pass local variables to the view through an object
+//Set the route for the view with all the locations - connected to the array as a test! / NOW IT RUNS THE DBASE
+// server.get('/locations', async (req, res) => {
+//     res.render('locations', {locations: Object.values(locationDatabase)});   // in between curly braces is the optional parameter to pass local variables to the view through an object
+// });
+
+//Set the route for the view with all the locations - connected to the Padvinder Database :-)!
+server.get("/tracks", async (req, res) => {
+    const tracks = await g_db.all(`
+    SELECT
+      id,
+      track_name,
+      place_name,
+      region_name,
+      track_type,
+      track_length_km,
+      track_length_time,
+      track_level,
+      intro,
+      description,
+      image_link
+    FROM tracks
+  `);
+  console.log(tracks);
+  res.render("locations", {tracks: tracks});
 });
+
 
 //Set the route for the view with a single location
 server.get('/locations/:id', async (req, res) => {
@@ -91,4 +113,16 @@ server.get('/map', async (req, res) => {
 });
 
 // Set up port for server, always at the bottom of the file so the server will only start listening when all the modules are loaded and routes are created
-server.listen(port, () => console.log(`Server listening to port ${port}!`));
+// server.listen(port, () => console.log(`Server listening to port ${port}!`));
+// NOW IT RUNS ON THE DBASE
+
+//Connect database to the server and open port
+sqlite.open(`data/padvinder.sqlite3`)
+  .then(db => {
+    g_db = db;
+    server.listen(port, () => console.log(`Server listening to port ${port}!`));
+  })
+  .catch(error => {
+    console.error(`Failed to open database, error: ${error}`);
+    process.exit(-1);
+  });

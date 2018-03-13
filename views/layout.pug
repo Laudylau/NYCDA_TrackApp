@@ -4,7 +4,7 @@ doctype html
 html
   
   head
-    title Review App Laura
+    title Padvinder - Biking and hiking in France
     meta(name="viewport" content="width=device-width, initial-scale=1")
     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Permanent+Marker')
     link(rel='stylesheet' href="https://fonts.googleapis.com/css?family=Noto+Sans")
@@ -22,38 +22,46 @@ html
         body {
           font-family: Noto Sans;
           color: #2B303A;
+          background-color: #EEE5E9;
         }
         
         h1 {
           font-size: 30px;
         }
         
-        .headermain {
-          box-sizing: borderbox;
-        }
+        //- .headermain {
+        //-   box-sizing: borderbox;
+        //-   margin: 0px;
+        //-   font-family: Permanent Marker;
+        //-   font-size: 80px;
+        //-   color: #ED3B3B;
+        //-   text-align: center;
+        //- }
         
-        #headertitle {
+        .headermain img {
           box-sizing: border-box;
-          width: 75%;
-          margin: 0px;
+          float: left;
+          width: 20%;
+          height: auto;
+          background: #555;
+        }
+
+        .headermain h1 {
+          box-sizing: border-box;
           font-family: Permanent Marker;
-          font-size: 80px;
-          color: #ED3B3B;
+          font-size: 70px;
+          //- position: relative;
+          margin: 0px;
+          color: #D64933;
           text-align: center;
         }
-        
-        #headerimage {
-          box-sizing: border-box;
-          width: 25%;
-          height: auto;
-        }
-        
+                
         ul {
           list-style-type: none;
           margin: 0;
           padding: 0;
           overflow: hidden;
-          background-color: #EDD711;
+          background-color: #2B303A;
         }
         
         li {
@@ -62,32 +70,41 @@ html
         
         li a {
             display: block;
-            color: #2B303A;
+            color: #EEE5E9;
+            font-weight: bold;
+            font-size: 18px;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
         }
         
         li a:hover {
-            background-color: #111;
+            background-color: #D64933;
+            font-size: 20px;
+            color: #2B303A;
+        }
+      
+        footer {
+          margin-top: 20px;
         }
       
       header  
         div.headermain
-            img#headerimage(src = "https://www.rug.nl/feb/career-services/img/topic-relatedinfo/topic-icoon-wegwijzer.jpg")
-            h1#headertitle
-                | PADVINDER
-        nav.nav
-          ul.nav_list
-            li.nav_item
-              a(href='/')
-                | home
-            li.nav_item
-              a(href='/locations')
-                | locations
-            li.nav_item
-              a(href='/map')
-                | map
+            //- img(src = "https://www.rug.nl/feb/career-services/img/topic-relatedinfo/topic-icoon-wegwijzer.jpg")
+            h1
+              | PADVINDER
+        
+      nav
+        ul.nav_list
+          li.nav_item
+            a(href='/')
+              | home
+          li.nav_item
+            a(href='/tracks')
+              | tracks
+          li.nav_item
+            a(href='/map')
+              | map
 
       //- to do: make header with icons and search bar, a login and register
                   
@@ -98,13 +115,13 @@ html
     block footer 
     
       footer
-        .socialmediabuttons
-          a(href="#" class="fa fa-facebook")
-          a(href="#" class="fa fa-twitter")
-          a(href="#" class="fa fa-google")
-          a(href="#" class="fa fa-linkedin")
-          a(href="#" class="fa fa-youtube")
-          a(href="#" class="fa fa-instagram")
+        //- .socialmediabuttons
+        //-   a(href="#" class="fa fa-facebook")
+        //-   a(href="#" class="fa fa-twitter")
+        //-   a(href="#" class="fa fa-google")
+        //-   a(href="#" class="fa fa-linkedin")
+        //-   a(href="#" class="fa fa-youtube")
+        //-   a(href="#" class="fa fa-instagram")
       
     block scripts
       //- block for the scripts of the inheriting templates
