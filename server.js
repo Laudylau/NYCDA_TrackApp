@@ -1,5 +1,4 @@
-//This is the server file for my final project. Please let me know if I make wrong assunmptions or if I do the right coding but with the wrong comment.
-//That helps me understand if I really know what I am doing and why. I will delete them in the end, it is also a kind of log.
+//This is the server file for my final project.
 
 // Created a server with the module Express and created a variable called server to store all the express methods in
 const express = require("express");
@@ -12,6 +11,7 @@ let g_db = null;
 // Required the Node module body-parser to parse incoming request bodies in middleware (through the req.body property)
 const bodyparser = require("body-parser");
 
+// Create the middleware for the bodyparser
 server.use(bodyparser.urlencoded({
   extended: true
 }));
@@ -20,7 +20,7 @@ server.use(bodyparser.urlencoded({
 const pug = require("pug");
 
 // Created a variable for the portnumber
-const port = 8080;
+const port = 5000;
 
 //Set Pug as the view engine
 server.set('view engine', 'pug');
@@ -97,15 +97,37 @@ server.get("/tracks", async (req, res) => {
 });
 
 
-//Set the route for the view with a single location
-server.get('/locations/:id', async (req, res) => {
+// //Set the route for the view with a single location - connected to the array as a test! / NOW IT RUNS THE DBASE
+server.get('/tracks/:id', async (req, res) => {
     const location = locationDatabase[req.params.id];
     if(!location) {           //is the following maybe a stricter solution: if (typeof location === 'undefined' || location === null) {
-        res.redirect('/locations');
+        res.redirect('/tracks');
         return;
     }
     res.render('onelocation', location);
 });
+
+//Set the route for the view with a single location - connected to Dbase...Todo
+// server.get('/locations/:id', async (req, res) => {
+//       const tracks = await g_db.all(`
+//       SELECT
+//         id,
+//         track_name,
+//         place_name,
+//         region_name,
+//         track_type,
+//         track_length_km,
+//         track_length_time,
+//         track_level,
+//         intro,
+//         description,
+//         image_link
+//       FROM tracks
+//     `);
+//     console.log(tracks);
+//     res.render("locations", {tracks: tracks});
+//   });
+
 
 //Set the route for the map view
 server.get('/map', async (req, res) => {

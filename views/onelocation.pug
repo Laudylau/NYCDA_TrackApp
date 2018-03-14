@@ -28,13 +28,20 @@ block content
   img(src=image)
   br
   div.linkBack
-    a(href='/locations') 
+    a(href='/tracks') 
         | Back to all locations &raquo;
   br
+  
+  //- each review in reviews
+  //- 
+  //-   .showReviews
+  //- 
+  //-     p=review.
+    
   div.form_comment
     h3.form_comment_title
       | ------- How did you like this track? --------
-    form(method="post" action="/locations/:id") 
+    form(method="post" action="/tracks/:id") 
       div.starRating
         | Rate the track!
         input(type="radio" id="star1" name="rating" value="1")

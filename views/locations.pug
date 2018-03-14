@@ -18,7 +18,7 @@ block content
     
     span {
       border: solid;
-      border-color: red;
+      border-color: black;
       display: inline-block;
     }
     
@@ -27,16 +27,6 @@ block content
   a(href='/') 
       | Back to the home page &raquo;
   br
-
-  //- each location in locations
-  //- 
-  //-   .postblock
-  //-     h3= location.name
-  //-     img(src=location.image)
-  //-     p= location.text
-  //-     a(href= `/locations/${location.id}`)
-  //-           | Read More &raquo;
-  
 
   each track in tracks
   
@@ -51,5 +41,5 @@ block content
         span#trackLevel=track.track_level
       img(src = track.image_link)
       p#trackintro=track.intro
-      a(href= `/locations/${track.id}`) 
+      a(href= `/tracks/${track.id}`) 
               | Read More &raquo;

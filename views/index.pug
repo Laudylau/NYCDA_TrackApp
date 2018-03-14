@@ -4,11 +4,22 @@ block content
   
   style(type="text/css").
 
+    .imgDivIntroText {
+        box-sizing: border-box;
+        background-image: url("https://www.fast-growing-trees.com/blog/wp-content/uploads/2016/02/JaneMags.jpg")
+    }
+    
+    .textDivIntroText {
+        box-sizing: border-box;
+        margin: 0px;
+        //- background-color: #EEE5E9;
+    }
+    
     .linkTiles {
         box-sizing: border-box;
-        width: 35%;
+        width: 24%;
         display: inline-block;
-        margin: 50px;
+        margin: 10px;
         border: solid;
         border-color: red;
     }
@@ -16,36 +27,37 @@ block content
     .tileFont {
         font-family: Permanent Marker;
         color: red;
-        text-alignment: center;
+        text-align: center;
     }
       
     #goToMap {
-        background-image(url: "http://www.wanneyn.be/uploads/artikels/22786_x-nite.jpg")
+        background-image: url("http://www.wanneyn.be/uploads/artikels/22786_x-nite.jpg");
     }  
       
-  h1= "Find cool paths to walk or bike here and read the reviews and tips of other people!"
-  h2= "Bonjour! I am Laura."
-  p= "Something about the app bladiebla some nice introtext"
-  br
-    
+  .imgDivIntroText
+    .textDivIntroText
+      h1= "Find cool paths to walk or bike here and read the reviews and tips of other people!"
+      h2= "Bonjour! I am Laura."
+      p= "Something about the app bladiebla some nice introtext"    
   
-  .linkTiles#goToMap
-      h3.tileFont
-          | MAP
-      a(href='/map') 
-          | Check out the map over here &raquo;
-  .linkTiles#goToLocations
-      h3.tileFont
-          | TRACKS
-      a(href='/tracks') 
-          | Check out all the tracks over here &raquo;
-  .linkTiles#goToWalkTrails
-      h3.tileFont
-          | HIKING
-      a(href='/tracks') 
-          | Check out all the walking paths over here &raquo;
-  .linkTiles#goToBikeTrails
-      h3.tileFont
-          | BIKING
-      a(href='/tracks') 
-          | Check out all the biking paths over here &raquo;
+  .tilesDiv
+    .linkTiles#goToMap
+        h3.tileFont
+            | MAP
+        a(href='/map') 
+            | Check out the map over here &raquo;
+    .linkTiles#goToLocations
+        h3.tileFont
+            | TRACKS
+        a(href='/tracks') 
+            | Check out all the tracks over here &raquo;
+    .linkTiles#goToWalkTrails
+        h3.tileFont
+            | HIKING
+        a(href='/tracks') 
+            | Check out all the walking paths over here &raquo;
+    .linkTiles#goToBikeTrails
+        h3.tileFont
+            | BIKING
+        a(href='/tracks') 
+            | Check out all the biking paths over here &raquo;
