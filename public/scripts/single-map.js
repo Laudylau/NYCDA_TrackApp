@@ -7,8 +7,8 @@ function initMap() {
         zoom: 9,
         center: lalala
       });
-        var marker = new google.maps.Marker({
-          position: lalala,
-          map: map
-        });
+      var marker = new google.maps.Marker({
+        position: lalala,
+        map: map
+      });
 }

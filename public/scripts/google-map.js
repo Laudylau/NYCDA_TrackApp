@@ -9,8 +9,8 @@ function initMap() {
 }
 
 let g_castles = [
-  ['Chateau de Monbazillac', 44.7966125, 0.4919465],
-  ['Chateau de Bridoire', 44.7965911, 0.4240952]
+  ['Chateau de Monbazillac', 44.7966125, 0.4919465, 'lalala1'],
+  ['Chateau de Bridoire', 44.7965911, 0.4240952, 'lalala2']
 ];
 
 function setMarkers(map) {
@@ -29,5 +29,16 @@ function setMarkers(map) {
       map: map,
       icon: image,
     });
+    let infowindow = new google.maps.InfoWindow({
+            content: castle
+    });
+    marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
   }
+}
+
+function setInfoWindow(map) {
+
+
 }
