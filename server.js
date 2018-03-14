@@ -20,13 +20,13 @@ server.use(bodyparser.urlencoded({
 const pug = require("pug");
 
 // Created a variable for the portnumber
-const port = 5000;
+const port = 8080;
 
 //Set Pug as the view engine
 server.set('view engine', 'pug');
 
 // Store all JS in Scripts folder.
-server.use(express.static(__dirname + '/scripts'))
+server.use(express.static(__dirname + '/public'))
 
 // //Store all CSS in Styles folder.
 // server.use(express.static(__dirname + '/styles'))
@@ -36,34 +36,34 @@ server.use(express.static(__dirname + '/scripts'))
 
 // For testing now an array with objects
 // NOW IT RUNS ON THE DBASE
-let locationDatabase = {
-    1: {
-        id: 1,
-        name: "Chateau de Mobazillac",
-        text: "This is a BIG castle.",
-        image: "http://www.sarlat-tourisme.com/sites/default/files/sirtaqui_files/33f769540442d94ba4db1bca7f636989.jpg",
-        latitude: 44.7966125,
-        langitude: 0.4919465
-    },
-
-    2: {
-        id: 2,
-        name: "Chateau de Bridoire",
-        text: "Knights like fighting",
-        image: "http://static.panoramio.com/photos/large/92605638.jpg",
-        latitude: 44.7965911,
-        langitude: 0.4240952
-    },
-
-    3: {
-        id: 3,
-        name: "Chateau de Castelnaud",
-        text: "That is a nice view!",
-        image: "http://www.perigordnoir-valleedordogne.com/sites/default/files/galleries/castelnaud.jpg",
-        latitude: 44.7965827,
-        langitude: 0.4250942
-    }
-}
+// let locationDatabase = {
+//     1: {
+//         id: 1,
+//         name: "Chateau de Mobazillac",
+//         text: "This is a BIG castle.",
+//         image: "http://www.sarlat-tourisme.com/sites/default/files/sirtaqui_files/33f769540442d94ba4db1bca7f636989.jpg",
+//         latitude: 44.7966125,
+//         langitude: 0.4919465
+//     },
+//
+//     2: {
+//         id: 2,
+//         name: "Chateau de Bridoire",
+//         text: "Knights like fighting",
+//         image: "http://static.panoramio.com/photos/large/92605638.jpg",
+//         latitude: 44.7965911,
+//         langitude: 0.4240952
+//     },
+//
+//     3: {
+//         id: 3,
+//         name: "Chateau de Castelnaud",
+//         text: "That is a nice view!",
+//         image: "http://www.perigordnoir-valleedordogne.com/sites/default/files/galleries/castelnaud.jpg",
+//         latitude: 44.7965827,
+//         langitude: 0.4250942
+//     }
+// }
 
 //Set the route for the main view
 server.get('/', (req, res) => {
@@ -98,35 +98,34 @@ server.get("/tracks", async (req, res) => {
 
 
 // //Set the route for the view with a single location - connected to the array as a test! / NOW IT RUNS THE DBASE
-server.get('/tracks/:id', async (req, res) => {
-    const location = locationDatabase[req.params.id];
-    if(!location) {           //is the following maybe a stricter solution: if (typeof location === 'undefined' || location === null) {
-        res.redirect('/tracks');
-        return;
-    }
-    res.render('onelocation', location);
-});
+// server.get('/tracks/:id', async (req, res) => {
+//     const location = locationDatabase[req.params.id];
+//     if(!location) {           //is the following maybe a stricter solution: if (typeof location === 'undefined' || location === null) {
+//         res.redirect('/tracks');
+//         return;
+//     }
+//     res.render('onelocation', location);
+// });
 
-//Set the route for the view with a single location - connected to Dbase...Todo
-// server.get('/locations/:id', async (req, res) => {
-//       const tracks = await g_db.all(`
-//       SELECT
-//         id,
-//         track_name,
-//         place_name,
-//         region_name,
-//         track_type,
-//         track_length_km,
-//         track_length_time,
-//         track_level,
-//         intro,
-//         description,
-//         image_link
-//       FROM tracks
-//     `);
-//     console.log(tracks);
-//     res.render("locations", {tracks: tracks});
-//   });
+// Set the route for the view with a single location - connected to Dbase...Todo
+server.get("/tracks/:trackID", async (req, res) => {
+      const trackID = parseInt(req.params.trackID);
+
+      const [ track, reviews ] = await Promise.all([
+          g_db.get("SELECT * FROM tracks WHERE id = ?", trackID),
+          g_db.all("SELECT * FROM reviews WHERE track_id = ? ORDER BY date_posted DESC", trackID)
+      ]);
+
+      if (!track) {
+          res.status(404).end("Thread not found!");
+          return;
+      }
+
+      res.render("onelocation", {
+          track,
+          reviews
+      });
+});
 
 
 //Set the route for the map view

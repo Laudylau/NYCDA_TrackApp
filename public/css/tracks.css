@@ -1,0 +1,63 @@
+
+  .mainTextTracks {
+    height: 180px;
+  }
+
+  #titleTrackspage {
+    font-size: 24px;
+    color: #273058;
+    text-align: center;
+  }
+
+  #textTrackspage {
+    font-size: 16px;
+    color: #273058;
+    text-align: center;
+  }
+
+  .postblock {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 30px;
+    width: 300px;
+    text-align: center;
+    background-color: #E7EBFD;
+    color: #273058;
+  }
+
+  .postblock img {
+    display: block;
+    width: 200px;
+    height: 150px;
+    margin: 0px auto;
+  }
+
+  span {
+    color: #E7EBFD;
+    display: inline-block;
+    margin: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 50px;
+    font-size: 12px;
+    background-color: #D64933;
+  }
+
+  p {
+    text-align: left;
+    font-size: 14px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  /* .mainPart {
+    float: left;
+    width: 850px;
+  }
+
+  .asideInfo {
+    float: left;
+    width: 140px;
+  } */

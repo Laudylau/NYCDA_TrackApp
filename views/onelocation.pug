@@ -2,42 +2,35 @@ extends layout
 
 block content
   
-  style(type="text/css").
-    img {
-      width: 400px;
-    }
-    #map {
-      display: block;
-      width: 100%;
-      height: 150px;
-      margin: 0px;
-      padding: 0px;
-    }
-    .form_comment {
-      border-top-style: solid;
-      border-bottom-style: solid;
-    }
-    .rating {
-      content: '★' 
-    }
-  
   #map
-  h1= name
-  p= text
-  br
-  img(src=image)
-  br
-  div.linkBack
-    a(href='/tracks') 
-        | Back to all locations &raquo;
-  br
+  h1#trackTitle_OneTrack= track.track_name
+  .tags
+    span#trackType=track.track_type
+    span#regionName=track.region_name
+    span#placeName=track.place_name
+    span#trackKm=track.track_length_km
+    span#trackTime=track.track_length_time
+    span#trackLevel=track.track_level
   
-  //- each review in reviews
-  //- 
-  //-   .showReviews
-  //- 
-  //-     p=review.
-    
+  section.trackInfo
+    article
+      figure
+        img(src = track.image_link)
+      p#trackIntro= track.intro
+      p#trackDescription= track.description
+      a(href='/tracks') 
+          | Back to all locations &raquo;
+
+  section.showReviews
+    h1#reviewTitlebar="Check out here reviews of other hikers and bikers!"
+    each review in reviews
+      .reviewUnique
+        .spanReviews
+          span#datePosted=review.date_posted
+        p#reviewText=review.review_text
+        p#reviewStar=review.review_star
+          | Rating (1=Horrible --- 5=Amazing!!: )
+  
   div.form_comment
     h3.form_comment_title
       | ------- How did you like this track? --------
@@ -59,5 +52,5 @@ block content
         br
           
 block scripts
-  script(src='/single-map.js')
+  script(src='/scripts/single-map.js')
   script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` async defer)
