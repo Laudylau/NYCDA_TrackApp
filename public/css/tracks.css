@@ -1,6 +1,6 @@
 
   .mainTextTracks {
-    height: 180px;
+    height: 200px;
   }
 
   #titleTrackspage {
@@ -36,8 +36,8 @@
     color: #E7EBFD;
     display: inline-block;
     margin: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 50px;

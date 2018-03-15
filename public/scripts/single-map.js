@@ -1,14 +1,13 @@
-// just to check if the map works, have to link this to database file
+// This is linked to the Dbase Padvinder.sqlite3 now! In the table maps.
 
-
-function initMap() {
-    const lalala = {lat: 44.7966125, lng: 0.4919465};
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 9,
-        center: lalala
-      });
-      var marker = new google.maps.Marker({
-        position: lalala,
-        map: map
-      });
-}
+// function initMap() {
+//     let trackStart = {lat: g_table.start_lat, lng: g_table.start_long};
+//     let map = new google.maps.Map(document.getElementById('map'), {
+//       zoom: 9,
+//       center: trackStart
+//     });
+//     let marker = new google.maps.Marker({
+//       position: trackStart,
+//       map: map
+//     });
+// }

@@ -5,90 +5,30 @@ html
   
   head
     title Padvinder - Biking and hiking in France
+    meta(charset="UTF-8")
+    meta(name="description" content="Find hiking and biking tracks in Dordoge")
     meta(name="viewport" content="width=device-width, initial-scale=1")
-    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Permanent+Marker')
-    link(rel='stylesheet' href="https://fonts.googleapis.com/css?family=Noto+Sans")
-    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+    meta(name="author" content="Laura Wille")
+    meta(name="keywords" content="pathfinder, tracks, hiking, biking, Dordogne, France")
+    link(href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet" )
+    link(href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" )
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" )
     link(href='/css/tracks.css' rel='stylesheet')
     link(href='/css/onetrack.css' rel='stylesheet')
     link(href='/css/index.css' rel='stylesheet')
-      //- to do week 4: fill in the metas
-    //-link(rel='stylesheet', href='/styles/layout.css', type='text/css')
+    link(href='/css/layout.css' rel='stylesheet')
       
   
   body
     
     block header
       
-      style(type="text/css").
-        
-        body {
-          font-family: Noto Sans;
-          color: #2B303A;
-          background-color: #FDF9E7;
-        }
-        
-        h1 {
-          font-size: 30px;
-        }
-      
-        
-        .headermain img {
-          box-sizing: border-box;
-          float: left;
-          width: 20%;
-          height: auto;
-          background: #555;
-        }
-
-        .headermain h1 {
-          box-sizing: border-box;
-          font-family: Permanent Marker;
-          font-size: 70px;
-          //- position: relative;
-          margin: 0px;
-          color: #D64933;
-          text-align: center;
-        }
-                
-        ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background-color: #EEC414;
-        }
-        
-        li {
-            float: left;
-        }
-        
-        li a {
-            display: block;
-            color: #273058;
-            font-weight: bold;
-            font-size: 18px;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        
-        li a:hover {
-            background-color: #D64933;
-            font-size: 20px;
-            color: #2B303A;
-        }
-      
-        footer {
-          margin-top: 20px;
-        }
-      
       header  
         div.headermain
             //- img(src = "https://www.rug.nl/feb/career-services/img/topic-relatedinfo/topic-icoon-wegwijzer.jpg")
             h1
               | PADVINDER
-        
+      
       nav
         ul.nav_list
           li.nav_item
@@ -100,6 +40,9 @@ html
           li.nav_item
             a(href='/map')
               | map
+          li.nav_item
+            a(href='/addtrack')
+              | add track!
 
       //- to do: make header with icons and search bar, a login and register
                   

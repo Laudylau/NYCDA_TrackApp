@@ -3,6 +3,7 @@ extends layout
 block content
   
   #map
+
   h1#trackTitle_OneTrack= track.track_name
   .tags
     span#trackType=track.track_type
@@ -34,7 +35,7 @@ block content
   div.form_comment
     h3.form_comment_title
       | ------- How did you like this track? --------
-    form(method="post" action="/tracks/:id") 
+    form(method="post" action="/tracks/${:trackID}") 
       div.starRating
         | Rate the track!
         input(type="radio" id="star1" name="rating" value="1")
@@ -43,14 +44,29 @@ block content
         input(type="radio" id="star4" name="rating" value="4") 
         input(type="radio" id="star5" name="rating" value="5") 
       div.comment
-        textarea(type="text" id="commentText" placeholder="Your feedback here" cols="45" rows="8")
+        textarea(type="text" id="commentText" name="review_text" placeholder="Your feedback here" cols="45" rows="8")
         br
         input(type="text" id="commentAuthor" placeholder="Name" size="50")
         input(type="email" id="commentAuthorMail" placeholder="E-mail" size="50")
         br
         input(type="submit" name="submit" placeholder="Submit")
         br
-          
+        
+    //- - function initMap() {
+    //-     const trackStart = {lat: maps.start_lat, lng: maps.start_long};
+    //-     console.log("link with maps table made");
+    //-     const map = new google.maps.Map(document.getElementById('map'), {
+    //-       zoom: 9,
+    //-       center: trackStart
+    //-     });
+    //-     const marker = new google.maps.Marker({
+    //-       position: trackStart,
+    //-       map: map
+    //-     });
+    //- }
+        
+        
 block scripts
-  script(src='/scripts/single-map.js')
+
+  //-script(src='/scripts/single-map.js')
   script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` async defer)
