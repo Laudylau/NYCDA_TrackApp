@@ -1,75 +1,92 @@
 
+.highlight {
+  color: #D64933;
+  padding-left: 3em;
+}
 
-/**
-  * 1. Use grid.
-  * 2. Gutter space.
-  * 3. Center at large sizes.
-  * 4. Set maximum width.
-*/
+.box {
+  border: solid;
+  border-radius: 0.5em;
+  border-color: #273058;
+  padding: 0.5em;
+  background-color: #EEC414;
+}
 
-  .gridContainer {
-    display: grid; /* 1 */
-    grid-gap: 2em; /* 2 */
-    margin: 1em auto; /* 2, 3 */
-    max-width: 80em; /* 4 */
-    padding: 0 1.5em; /* 2 */
-  }
+.boxList {
+  padding-left: 2em;
+  text-decoration: none;
+}
 
-/* Sidebar inherits grid display styles and gap size. This will be simpler once `display: subgrid` is supported! */
-  .aside {
-    display: inherit;
-    grid-gap: inherit;
-  }
+figure img {
+  float: left;
+  width: 200px;
+  heigth: 100px;
+  padding: 20px;
+}
 
-/* At slightly wider sizes, show sidebar elements side by side (each taking up half the space, minus gutter gap and stuff). */
-  @media (min-width: 34em) and (max-width: 49.9375em) {
-    .aside {
-      grid-template-columns: 1fr 1fr;
+.socialmediaButton {
+  clear: both;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-github {
+  background: black;
+  color: white;
+}
+
+/* tree equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 30%;
+    padding-left: 10px;
+}
+
+.column img {
+    margin-top: 12px;
+    width: 100%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout for three columns instead of four */
+@media (max-width: 800px) {
+    .column {
+        width: 50%;
     }
-  }
+}
 
-/* At even wider sizes… */
-  @media (min-width: 50em) {
-    /* Establish one primary (⅔) column and one secondary (⅓) column. */
-    .gridContainer {
-      grid-template-columns: 2fr 1fr;
-    }
-
-/**
-  * 1. Automatically create sidebar rows that are as short as their content will allow.
-  * 2. Make this element span two rows, allowing prose elements to flow to its left.
-*/
-
-  .aside {
-      grid-auto-rows: min-content; /* 1 */
-      grid-row: span 2; /* 2 */
-    }
-  }
-
-
-
-
-  /* .textDivIntroText {
-      box-sizing: border-box;
-      margin: 0px;
-      //- background-color: #EEE5E9;
-  }
-
-  .linkTiles {
-      box-sizing: border-box;
-      width: 24%;
-      display: inline-block;
-      margin: 10px;
-      border: solid;
-      border-color: red;
-  }
-
-  .tileFont {
-      font-family: Permanent Marker;
-      color: red;
-      text-align: center;
-  }
-
-  #goToMap {
-      background-image: url("http://www.wanneyn.be/uploads/artikels/22786_x-nite.jpg");
-  } */
+/* Responsive layout for stacking the two columns on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .column {
+        width: 100%;
+   }
+}

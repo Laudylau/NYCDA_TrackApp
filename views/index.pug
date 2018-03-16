@@ -2,57 +2,48 @@ extends layout
 
 block content
   
-  .gridContainer
+  .container
     
-    .section
-        h1= "Find cool paths to walk or bike here and read the reviews and tips of other people!"
-        p= "Something about the app bladiebla some nice introtext"
-        p="Cupcake ipsum dolor sit amet halvah bonbon. Caramels oat cake pudding I love jujubes ice cream pastry. I love chocolate brownie dessert halvah lemon drops. Chupa chups chocolate bar dragée dragée sweet sweet roll wafer I love chupa chups. Candy jelly cake. Cake gingerbread cake tart wafer apple pie jelly beans I love I love. Dragée cupcake lemon drops. Wafer toffee dragée sweet cake marshmallow gingerbread. Sweet roll I love I love cake I love I love oat cake sweet sweet. Pudding tiramisu brownie tart biscuit cake sweet lemon drops. Apple pie cheesecake powder cookie I love powder caramels. Powder soufflé candy topping I love marzipan. Jelly I love lollipop lollipop."    
+    .article
+      h1= "Pathfinder lets you explore unknown Dordogne tracks!"
+      h3= "Find cool paths to ..." 
+      h3.highlight <i class="fas fa-map-signs"></i>   walk ...</h3>
+      h3.highlight <i class="fas fa-compass"></i>   hike ...</h3>
+      h3.highlight <i class="fas fa-bicycle"></i>   bike ...</h3>
+      h3= "and read the reviews and tips of other people!"
     
-    
-    .aside
-      .section
-          h2.sectionHeader= "Bonjour! I am Laura"
-          p="Lala something about me"
-          ul.sectionMenu
-            li
-              a(href="/tracks")
-                | Go to the tracks
-            br
-            li
-              a(href="/maps")
-                | Go to the map
-
-      
-      .section
-          h2.sectionHeader= "Another section"
-          ul.sectionMenu
-            li(a href="/tracks")
-              | Do a thing
-            li(a href="/tracks")
-              | Do another thing
-            li(a href="/tracks")
-              | Do more other things
-      
-
-    //- .tilesDiv
-    //-   .linkTiles#goToMap
-    //-       h3.tileFont
-    //-           | MAP
-    //-       a(href='/map') 
-    //-           | Check out the map over here &raquo;
-    //-   .linkTiles#goToLocations
-    //-       h3.tileFont
-    //-           | TRACKS
-    //-       a(href='/tracks') 
-    //-           | Check out all the tracks over here &raquo;
-    //-   .linkTiles#goToWalkTrails
-    //-       h3.tileFont
-    //-           | HIKING
-    //-       a(href='/tracks') 
-    //-           | Check out all the walking paths over here &raquo;
-    //-   .linkTiles#goToBikeTrails
-    //-       h3.tileFont
-    //-           | BIKING
-    //-       a(href='/tracks') 
-    //-           | Check out all the biking paths over here &raquo;
+    .sidebar
+      .box
+        h1.boxHeader= "Check out the coolest tracks!"
+        h3="In Pathfinder you find unique tracks. Click here to find out more."
+        p.boxList
+          a(href="/tracks")
+            <i class="fas fa-compass"></i>                      Go to the tracks</h3>
+        p.boxList
+          a(href="/map")
+            <i class="fas fa-flag-checkered"></i>                     Go to the map</h3>
+      .box
+        h1.boxHeader= "Bonjour! I am Laura"
+        p="I am a newbie webdeveloper and made this website as a final assignment for the Web Dev Course from the New York Coding and Design Academy."
+        figure
+          img(src="images/fotobiking.jpg")
+        div.socialmediaButton
+          a(href="https://www.facebook.com/laurawille77" class="fa fa-facebook")
+          a(href="https://www.linkedin.com/in/laurawille" class="fa fa-linkedin")
+          a(href="https://github.com/Laudylau" class="fa fa-github")
+  
+    .article
+      h1= "Here are some pictures of the tracks"
+      .row
+        .column
+          img(src="images/fotobiking.jpg" style="width:100%")
+          img(src="images/fotobiking.jpg" style="width:100%")
+          img(src="images/fotobiking.jpg" style="width:100%")
+        .column
+          img(src="images/fotobiking.jpg" style="width:100%")
+          img(src="images/fotobiking.jpg" style="width:100%")
+          img(src="images/fotobiking.jpg" style="width:100%")
+        .column
+          img(src="images/fotobiking.jpg" style="width:100%")
+          img(src="images/fotobiking.jpg" style="width:100%")
+          img(src="images/fotobiking.jpg" style="width:100%")

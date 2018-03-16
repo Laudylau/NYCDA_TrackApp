@@ -1,49 +1,124 @@
+/* CSS FOR MAIN LAYOUT TEMPLATE
+FINAL ASSIGNMENT NYCDA */
 
-
-
-
-
-
-
-
-
-
+/* ------------------ GENERAL PROPERTIES FOR THE WHOLE WEBSITE --------------------------------------------*/
 
   body {
     font-family: Noto Sans;
-    color: #2B303A;
+    color: #273058;
     background-color: #FDF9E7;
+    margin: 0px;
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 1.5em;
+    color: #D64933;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    padding-left: 1.5em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* ------------------ CSS GRID FOR THE MAIN PART and explanation how it functions --------------------------------------------*/
+
+  /**
+   * 1. Use grid.
+   * 2. Gutter space.
+   * 3. Center at large sizes.
+   * 4. Set maximum width.
+   */
+
+  .container {
+    display: grid; /* 1 */
+    grid-gap: 1.5em; /* 2 */
+    margin: 1em auto; /* 2, 3 */
+    max-width: 80em; /* 4 */
+    padding: 0 1.5em; /* 2 */
+  }
+
+  /**
+   * Sidebar inherits grid display styles and gap size. This will be simpler once `display: subgrid` is supported!
+   */
+
+  .sidebar {
+    padding-left: 1.5em;
+    display: inherit;
+    grid-gap: inherit;
+  }
+
+  /**
+   * At slightly wider sizes, show sidebar elements side by side (each taking up half the space, minus gutter gap and stuff).
+   */
+
+  @media (min-width: 34em) and (max-width: 49.9375em) {
+    .sidebar {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /**
+   * At even wider sizes…
+   */
+
+  @media (min-width: 50em) {
+
+    /**
+     * Establish one primary (⅔) column and one secondary (⅓) column.
+     */
+
+    .container {
+      grid-template-columns: 2fr 1fr;
+    }
+
+    /**
+     * 1. Automatically create sidebar rows that are as short as their content will allow.
+     * 2. Make this element span two rows, allowing prose elements to flow to its left.
+     */
+
+    .sidebar {
+      grid-auto-rows: min-content; /* 1 */
+      grid-row: span 2; /* 2 */
+    }
+  }
+
+  .article {
+    padding-right: 2em;
   }
 
 
-  .headermain img {
-    box-sizing: border-box;
-    float: left; */
-    width: 20%;
-    height: auto;
-    background: #555;
-  }
 
-  .headermain h1 {
-    box-sizing: border-box;
+
+/* ------------------ CSS GRID FOR THE HEADER PART and explanation how it functions --------------------------------------------*/
+
+  .headerLogo {
+    box-sizing: border-box;   /*defines how the width and height of an element are calculated. Include padding and borders in the element's total width and height: border-box*/
+    margin: 0px;
     font-family: Permanent Marker;
     font-size: 70px;
-    /* position: relative; */
-    margin: 0px;
     color: #D64933;
     text-align: center;
   }
 
-  ul {
-    list-style-type: none;
+  .nav_list {
+    box-sizing: border-box;
+    list-style-type: none;      /*The list-style-type specifies the type of list-item marker in a list.*/
     margin: 0;
-    padding: 0;
-    overflow: hidden;
+    overflow: hidden;           /*What should happen if content overflows an element's box. Hidden doesn't show the overflow*/
     background-color: #EEC414;
+    text-align: center;
   }
 
   li {
@@ -57,7 +132,6 @@
       font-size: 18px;
       text-align: center;
       padding: 14px 16px;
-      text-decoration: none;
   }
 
   li a:hover {
@@ -66,6 +140,7 @@
       color: #2B303A;
   }
 
+/* ------------------ CSS GRID FOR THE MAIN TEXT and explanation how it functions --------------------------------------------*/
 
 
   footer {

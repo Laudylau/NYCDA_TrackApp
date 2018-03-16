@@ -35,7 +35,7 @@ block content
   div.form_comment
     h3.form_comment_title
       | ------- How did you like this track? --------
-    form(method="post" action="/tracks/${:trackID}") 
+    form(method="post" action=`/tracks/${trackID}`) 
       div.starRating
         | Rate the track!
         input(type="radio" id="star1" name="rating" value="1")

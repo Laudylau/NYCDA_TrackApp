@@ -14,6 +14,7 @@ html
     link(href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet" )
     link(href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" )
     link(href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet")
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet")
     link(href='/css/tracks.css' rel='stylesheet')
     link(href='/css/onetrack.css' rel='stylesheet')
     link(href='/css/index.css' rel='stylesheet')
@@ -24,9 +25,7 @@ html
     block header
       
       header  
-        div.headermain
-            //- img(src = "https://www.rug.nl/feb/career-services/img/topic-relatedinfo/topic-icoon-wegwijzer.jpg")
-            h1.headerLogo <i class="fas fa-map-signs"></i> PATHFINDER</h1>
+        h1.headerLogo <i class="fas fa-map-signs"></i> PATHFINDER</h1>
       
       nav
         ul.nav_list
@@ -35,18 +34,15 @@ html
               | home
           li.nav_item
             a(href='/tracks')
-              | tracks
+              | check all tracks
           li.nav_item
             a(href='/map')
-              | map
+              | go to map
           li.nav_item
             a(href='/addtrack')
               | add track!
 
       //- to do: make header with icons and search bar, a login and register
-      
-
-      
       
     block content
       //- block for the content of the inheriting templates
