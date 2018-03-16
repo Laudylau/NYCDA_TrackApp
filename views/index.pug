@@ -2,30 +2,57 @@ extends layout
 
 block content
   
-  .imgDivIntroText
-    .textDivIntroText
-      h1= "Find cool paths to walk or bike here and read the reviews and tips of other people!"
-      h2= "Bonjour! I am Laura."
-      p= "Something about the app bladiebla some nice introtext"    
-  
-  .tilesDiv
-    .linkTiles#goToMap
-        h3.tileFont
-            | MAP
-        a(href='/map') 
-            | Check out the map over here &raquo;
-    .linkTiles#goToLocations
-        h3.tileFont
-            | TRACKS
-        a(href='/tracks') 
-            | Check out all the tracks over here &raquo;
-    .linkTiles#goToWalkTrails
-        h3.tileFont
-            | HIKING
-        a(href='/tracks') 
-            | Check out all the walking paths over here &raquo;
-    .linkTiles#goToBikeTrails
-        h3.tileFont
-            | BIKING
-        a(href='/tracks') 
-            | Check out all the biking paths over here &raquo;
+  .gridContainer
+    
+    .section
+        h1= "Find cool paths to walk or bike here and read the reviews and tips of other people!"
+        p= "Something about the app bladiebla some nice introtext"
+        p="Cupcake ipsum dolor sit amet halvah bonbon. Caramels oat cake pudding I love jujubes ice cream pastry. I love chocolate brownie dessert halvah lemon drops. Chupa chups chocolate bar dragée dragée sweet sweet roll wafer I love chupa chups. Candy jelly cake. Cake gingerbread cake tart wafer apple pie jelly beans I love I love. Dragée cupcake lemon drops. Wafer toffee dragée sweet cake marshmallow gingerbread. Sweet roll I love I love cake I love I love oat cake sweet sweet. Pudding tiramisu brownie tart biscuit cake sweet lemon drops. Apple pie cheesecake powder cookie I love powder caramels. Powder soufflé candy topping I love marzipan. Jelly I love lollipop lollipop."    
+    
+    
+    .aside
+      .section
+          h2.sectionHeader= "Bonjour! I am Laura"
+          p="Lala something about me"
+          ul.sectionMenu
+            li
+              a(href="/tracks")
+                | Go to the tracks
+            br
+            li
+              a(href="/maps")
+                | Go to the map
+
+      
+      .section
+          h2.sectionHeader= "Another section"
+          ul.sectionMenu
+            li(a href="/tracks")
+              | Do a thing
+            li(a href="/tracks")
+              | Do another thing
+            li(a href="/tracks")
+              | Do more other things
+      
+
+    //- .tilesDiv
+    //-   .linkTiles#goToMap
+    //-       h3.tileFont
+    //-           | MAP
+    //-       a(href='/map') 
+    //-           | Check out the map over here &raquo;
+    //-   .linkTiles#goToLocations
+    //-       h3.tileFont
+    //-           | TRACKS
+    //-       a(href='/tracks') 
+    //-           | Check out all the tracks over here &raquo;
+    //-   .linkTiles#goToWalkTrails
+    //-       h3.tileFont
+    //-           | HIKING
+    //-       a(href='/tracks') 
+    //-           | Check out all the walking paths over here &raquo;
+    //-   .linkTiles#goToBikeTrails
+    //-       h3.tileFont
+    //-           | BIKING
+    //-       a(href='/tracks') 
+    //-           | Check out all the biking paths over here &raquo;

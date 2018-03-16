@@ -20,7 +20,7 @@ block content
       p#trackIntro= track.intro
       p#trackDescription= track.description
       a(href='/tracks') 
-          | Back to all locations &raquo;
+          | Back to all tracks &raquo;
 
   section.showReviews
     h1#reviewTitlebar="Check out here reviews of other hikers and bikers!"
@@ -52,21 +52,13 @@ block content
         input(type="submit" name="submit" placeholder="Submit")
         br
         
-    //- - function initMap() {
-    //-     const trackStart = {lat: maps.start_lat, lng: maps.start_long};
-    //-     console.log("link with maps table made");
-    //-     const map = new google.maps.Map(document.getElementById('map'), {
-    //-       zoom: 9,
-    //-       center: trackStart
-    //-     });
-    //-     const marker = new google.maps.Marker({
-    //-       position: trackStart,
-    //-       map: map
-    //-     });
-    //- }
+
         
         
 block scripts
 
-  //-script(src='/scripts/single-map.js')
+  script(type="text/javascript").
+    const maps = !{JSON.stringify(maps)};
+
+  script(src='/scripts/single-map.js' async defer)
   script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` async defer)

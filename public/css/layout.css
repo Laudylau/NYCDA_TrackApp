@@ -1,5 +1,14 @@
 
 
+
+
+
+
+
+
+
+
+
   body {
     font-family: Noto Sans;
     color: #2B303A;
@@ -13,7 +22,7 @@
 
   .headermain img {
     box-sizing: border-box;
-    float: left;
+    float: left; */
     width: 20%;
     height: auto;
     background: #555;
@@ -23,7 +32,7 @@
     box-sizing: border-box;
     font-family: Permanent Marker;
     font-size: 70px;
-    //- position: relative;
+    /* position: relative; */
     margin: 0px;
     color: #D64933;
     text-align: center;
@@ -56,6 +65,8 @@
       font-size: 20px;
       color: #2B303A;
   }
+
+
 
   footer {
     margin-top: 20px;

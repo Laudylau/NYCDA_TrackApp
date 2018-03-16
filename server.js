@@ -101,14 +101,14 @@ server.get("/tracks", async (req, res) => {
 //     res.render('onelocation', location);
 // });
 
-// Set the route for the view with a single location - connected to Dbase...NOW IT RUNS THE DBASE
+// Set the route for the view with a single location - connected to Dbase...NOW IT RUNS THE DBASE, INCLUDING TABLE MAPS
 server.get("/tracks/:trackID", async (req, res) => {
       const trackID = parseInt(req.params.trackID);
 
       const [ track, reviews, maps ] = await Promise.all([
           g_db.get(`SELECT * FROM tracks WHERE id = ?`, trackID),
           g_db.all(`SELECT * FROM reviews WHERE track_id = ? ORDER BY date_posted DESC`, trackID),
-          g_db.all(`SELECT * FROM maps WHERE track_id = ?`, trackID)
+          g_db.get(`SELECT * FROM maps WHERE track_id = ?`, trackID)
       ]);
 
       if (!track) {
@@ -154,7 +154,7 @@ server.post("/addtrack", async (req, res) => {
     $image_link: req.body.image_link
   });
 
-  // get the ID assigned to the just created track
+  // get the trackID assigned to the just created track
   const { trackID } = await g_db.get("SELECT LAST_INSERT_ROWID() AS trackID");
 
   res.redirect(`/tracks/${trackID}`);
@@ -162,24 +162,21 @@ server.post("/addtrack", async (req, res) => {
 
 
 // Set the route to post reviews to the database. NOT WORKING YET!!!!
-// server.post("/tracks/:trackID", (req, res) => {
-//   const trackID = parseInt(req.params.trackID);
-//
-//   g_db.run(`
-//     INSERT INTO reviews
-//       ( track_id, date_posted, review_text )
-//     VALUES
-//       ( $trackID, DATETIME('now'), $review_text )`, {
-//     $trackID: trackID,
-//     $review_text: req.body.review_text
-//   });
-//
-//   res.render("onelocation", {
-//       track,
-//       reviews
-//   });
-//
-// });
+server.post("/tracks/:trackID", (req, res) => {
+  const trackID = parseInt(req.params.trackID);
+
+  g_db.run(`
+    INSERT INTO reviews
+      ( track_id, date_posted, review_text )
+    VALUES
+      ( $trackID, DATETIME('now'), $review_text )`, {
+    $trackID: trackID,
+    $review_text: req.body.review_text
+  });
+
+  res.redirect(`/tracks/${trackID}`);
+
+});
 
 
 // Set up port for server, always at the bottom of the file so the server will only start listening when all the modules are loaded and routes are created
