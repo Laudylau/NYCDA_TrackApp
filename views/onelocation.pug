@@ -2,7 +2,7 @@ extends layout
 
 block content
   
-  #map
+  div#map
 
   h1#trackTitle_OneTrack= track.track_name
   .tags
@@ -61,4 +61,4 @@ block scripts
     const maps = !{JSON.stringify(maps)};
 
   script(src='/scripts/single-map.js' async defer)
-  script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` async defer)
+  script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` defer)

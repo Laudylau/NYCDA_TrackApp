@@ -1,64 +1,10 @@
+/* CSS FOR INHERITED INDEX TEMPLATE
+FINAL ASSIGNMENT NYCDA
+GRID AND OTHER GENERAL PROPERTIES ARE SET IN THE MAIN LAYOUT CSS */
 
-.highlight {
-  color: #D64933;
-  padding-left: 3em;
-}
+/* ------------------ PROPERTIES FOR THE IMAGE BOX --------------------------------------------*/
 
-.box {
-  border: solid;
-  border-radius: 0.5em;
-  border-color: #273058;
-  padding: 0.5em;
-  background-color: #EEC414;
-}
-
-.boxList {
-  padding-left: 2em;
-  text-decoration: none;
-}
-
-figure img {
-  float: left;
-  width: 200px;
-  heigth: 100px;
-  padding: 20px;
-}
-
-.socialmediaButton {
-  clear: both;
-}
-
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 30px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
-  border-radius: 50%;
-  text-align: center;
-}
-
-.fa:hover {
-    opacity: 0.7;
-}
-
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
-
-.fa-linkedin {
-  background: #007bb5;
-  color: white;
-}
-
-.fa-github {
-  background: black;
-  color: white;
-}
-
-/* tree equal columns that floats next to each other */
+/* STARTSITUATION: tree equal columns that floats next to each other */
 .column {
     float: left;
     width: 30%;
@@ -77,10 +23,10 @@ figure img {
     clear: both;
 }
 
-/* Responsive layout for three columns instead of four */
-@media (max-width: 800px) {
+/* Responsive layout for two columns instead of three */
+@media (max-width: 1000px) {
     .column {
-        width: 50%;
+        width: 35%;
     }
 }
 

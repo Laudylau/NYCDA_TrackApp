@@ -103,9 +103,14 @@ server.get("/tracks", async (req, res) => {
 
 // Set the route for the view with a single location - connected to Dbase...NOW IT RUNS THE DBASE, INCLUDING TABLE MAPS
 server.get("/tracks/:trackID", async (req, res) => {
+      // console.log("value 1:", req.params);
       const parsedID = parseInt(req.params.trackID);
+      // console.log("value 2:", parsedID);
 
-      const [ track, reviews, maps ] = await Promise.all([
+      const [ track, reviews, map ] = await Promise.all([
+        //The question mark represents a parameter that will later be replaced.
+        // Using parameterized queries is more secure than embedding the parameters right into the query.
+        //database get is for selecting 1 row out the table, all is to select all rows.
           g_db.get(`SELECT * FROM tracks WHERE id = ?`, parsedID),
           g_db.all(`SELECT * FROM reviews WHERE track_id = ? ORDER BY date_posted DESC`, parsedID),
           g_db.get(`SELECT * FROM maps WHERE track_id = ?`, parsedID)
@@ -115,11 +120,13 @@ server.get("/tracks/:trackID", async (req, res) => {
           res.status(404).end("Track not found!");
           return;
       }
-      console.log(maps);
+      // console.log("value 3:", track);
+      //console.log("value 4:", reviews);
+      //console.log("value 5:", map);
       res.render("onelocation", {
           track,
           reviews,
-          maps
+          map
       });
 });
 

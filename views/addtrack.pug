@@ -2,41 +2,65 @@ extends layout
 
 block content
   
-
-  h1="Add a track here!"
-  
-  a(href='/tracks') 
-          | Back to all locations &raquo;
-
-  
-  div.form_comment
+  .container
     
-    form(method="post" action="/addtrack") 
-      h1="Fill in ons these fields!"
-      div.addtrack
-        input(type="text" name="track_name" placeholder="Fill in the title of this track" size="50")
-        br
-        input(type="text" name="place_name" placeholder="Fill in the place where this track starts" size="50")
-        br
-        input(type="text" name="region_name" placeholder="Fill in the region of this track" size="50")
-        br
-        input(type="text" name="track_type" placeholder="Fill in the track-type, f.e. walk, hike, bike" size="50")
-        br
-        input(type="text" name="track_length_km" placeholder="Fill in the length of the track, f.e. 8 km" size="50")
-        br
-        input(type="text" name="track_length_time" placeholder="Fill in the estimated time to complete this track, f.e. 6 hours" size="50")
-        br
-        input(type="text" name="track_level" placeholder="Fill in the level of this track" size="50")
-        br
+    .article
+      h1="Are you a pathfinder in the Dordogne?"
+      h3= "If you think other trackers will like your path to" 
+      h3.highlight <i class="fas fa-map-signs"></i>   walk ...</h3>
+      h3.highlight <i class="fas fa-compass"></i>   hike ...</h3>
+      h3.highlight <i class="fas fa-bicycle"></i>   bike ...</h3>
+      h3= "then create it here to show it on this website!"
+      
+    .sidebar
+      .box
+        h1.boxHeader= "Check out the coolest tracks!"
+        h3="In Pathfinder you find unique tracks. Click here to find out more."
+        p.boxList
+          a(href="/tracks")
+            <i class="fas fa-compass"></i>                      Go to the tracks</h3>
+        p.boxList
+          a(href="/map")
+            <i class="fas fa-flag-checkered"></i>                     Go to the map</h3>
+      .box
+        h1.boxHeader= "Bonjour! I am Laura"
+        p="I am a newbie webdeveloper and made this website as a final assignment for the Web Dev Course from the New York Coding and Design Academy."
+        figure.sidebarPicture
+          img(src="images/fotobiking.jpg")
+        div.socialmediaButton
+          a(href="https://www.facebook.com/laurawille77" class="fa fa-facebook")
+          a(href="https://www.linkedin.com/in/laurawille" class="fa fa-linkedin")
+          a(href="https://github.com/Laudylau" class="fa fa-github")
+
+    .article
+      h1="Fill in these fields and create your track!"
+      form.addTrackForm(method="post" action="/addtrack")  
+        .label
+          | Track:
+          input(type="text" name="track_name" placeholder="A short title for this track" size="50")
+        .label
+          | Place:
+          input(type="text" name="place_name" placeholder="Where did you start the track" size="50")
+        .label
+          | Region:
+          input(type="text" name="region_name" placeholder="What is the region of this track?" size="50")
+        .label
+          | Type:  
+          input(type="text" name="track_type" placeholder="f.e. walk, hike or bike?" size="50")
+        .label
+          | Length:  
+          input(type="text" name="track_length_km" placeholder="How many kilometers is the track, f.e. 8 km" size="50")
+        .label
+          | Hours: 
+          input(type="text" name="track_length_time" placeholder="Fill in the estimated time to complete this track, f.e. 6 hours" size="50")
+        .label
+          | Level: 
+        input(type="text" name="track_level" placeholder="Choose easy, medium, " size="50")
         textarea(type="text" name="intro" placeholder="Write a short intro here" cols="45" rows="8")
-        br
         textarea(type="text" name="description" placeholder="Write a short description here" cols="45" rows="8")
-        br
         input(type="text" name="image_link" placeholder="Add a picture with an URL" size="50")
-        br
         input(type="submit" name="submit" placeholder="Submit")
-        br
-        
+            
       
         
 block scripts

@@ -1,41 +1,27 @@
+/* CSS FOR INHERITED INDEX TEMPLATE
+FINAL ASSIGNMENT NYCDA
+GRID AND OTHER GENERAL PROPERTIES ARE SET IN THE MAIN LAYOUT CSS */
 
-  .mainTextTracks {
-    height: 200px;
-  }
-
-  #titleTrackspage {
-    font-size: 24px;
-    color: #273058;
-    text-align: center;
-  }
-
-  #textTrackspage {
-    font-size: 16px;
-    color: #273058;
-    text-align: center;
-  }
+/* ------------------ PROPERTIES FOR THE POSTBLOCKS --------------------------------------------*/
 
   .postblock {
     box-sizing: border-box;
     display: inline-block;
-    margin: 30px;
+    margin: 15px;
     width: 300px;
     text-align: center;
     background-color: #E7EBFD;
     color: #273058;
   }
 
-  .postblock img {
-    display: block;
-    width: 200px;
-    height: 150px;
-    margin: 0px auto;
+  .tags {
+    margin: 5px;
   }
 
   span {
     color: #E7EBFD;
     display: inline-block;
-    margin: 10px;
+    margin: 5px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
@@ -45,19 +31,15 @@
     background-color: #D64933;
   }
 
-  p {
-    text-align: left;
-    font-size: 14px;
-    margin-left: 15px;
-    margin-right: 15px;
+  .postblock img {
+    display: block;
+    width: 200px;
+    height: 150px;
+    margin: 0px auto;
   }
 
-  /* .mainPart {
-    float: left;
-    width: 850px;
+  .tracklink {
+    display: block;
+    margin: 1.5em;
+    text-align: center;
   }
-
-  .asideInfo {
-    float: left;
-    width: 140px;
-  } */

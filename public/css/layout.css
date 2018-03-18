@@ -32,6 +32,67 @@ FINAL ASSIGNMENT NYCDA */
     text-decoration: none;
   }
 
+  .highlight {
+    color: #D64933;
+    padding-left: 3em;
+  }
+
+/* ------------------ GENERAL PROPERTIES FOR SIDEBAR IN EACH TEMPLATE --------------------------------------------*/
+
+  .box {
+    border: solid;
+    border-radius: 0.5em;
+    border-color: #273058;
+    padding: 0.5em;
+    background-color: #EEC414;
+  }
+
+  .boxList {
+    padding-left: 2em;
+    text-decoration: none;
+  }
+
+  .sidebar img {
+    float: left;
+    width: 200px;
+    heigth: 100px;
+    padding: 20px;
+  }
+
+  .socialmediaButton {
+    clear: both;
+  }
+
+  .fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+    text-align: center;
+  }
+
+  .fa:hover {
+      opacity: 0.7;
+  }
+
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+
+  .fa-linkedin {
+    background: #007bb5;
+    color: white;
+  }
+
+  .fa-github {
+    background: black;
+    color: white;
+  }
+
   /* ------------------ CSS GRID FOR THE MAIN PART and explanation how it functions --------------------------------------------*/
 
   /**

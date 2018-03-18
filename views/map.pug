@@ -1,24 +1,45 @@
 extends layout
 
 block content
+
   style(type="text/css").
 
     #map {
-      width: 50%;
-      height: 400px;
-      margin: 50px;
+      width: auto;
+      height: 600px;
     }
-  
-  h2= "Check out all the tracks here on the map"
-  
-  p= "Just click on a marker to see what kind of track it is"
-  
-  #map
-  a(href='/') 
-      | Back to the home page &raquo;
+
+  .container
+    .article
+      h1= "Check out all the tracks here on the map"
+      h3= "Just click on a marker to see what kind of track it is"
+
+    .sidebar
+      .box
+        h1.boxHeader= "Check out the coolest tracks!"
+        h3="In Pathfinder you find unique tracks. Click here to find out more."
+        p.boxList
+          a(href="/tracks")
+            <i class="fas fa-compass"></i>                      Go to the tracks</h3>
+        p.boxList
+          a(href="/")
+            <i class="fas fa-home"></i>                      back to homepage</h3>
       
-      
+      .box
+        h1.boxHeader= "Bonjour! I am Laura"
+        p="I am a newbie webdeveloper and made this website as a final assignment for the Web Dev Course from the New York Coding and Design Academy."
+        figure.sidebarPicture
+          img(src="images/fotobiking.jpg")
+        div.socialmediaButton
+          a(href="https://www.facebook.com/laurawille77" class="fa fa-facebook")
+          a(href="https://www.linkedin.com/in/laurawille" class="fa fa-linkedin")
+          a(href="https://github.com/Laudylau" class="fa fa-github")
+  
+    .article
+      #map
+
+
 block scripts
   script(src='/scripts/google-map.js')
-  script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` async defer)
+  script(defer src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap`)
   

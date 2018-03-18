@@ -2,55 +2,48 @@ extends layout
 
 block content
   
-  .gridContainer
+  .container
     
-    section.mainPart
+    .article
       .mainTextTracks  
-        h1#titleTrackspage="Thousands of track kilometers and amazing views ... get your Dordogne experience here!"
-        h2#textTrackspage="Biking of hiking in the Dordogne is a nice experience. The environment is so divers, that we dare to say that each track is unique! There is something for everybody: kids, sporters, easy walkers and rough types that wanna get dirty... So check out these tracks, put on your hiking shoes or jump on your bike. And *important* have fun! "
-        a(href='/') 
-          | Back to the home page &raquo;
+        h1="Thousands of track kilometers ... GO!"
+        h3="Biking or hiking in the Dordogne is a real experience. With super divers envirenmonts and amazing views, each track is unique! There is something for everybody: kids, sporters, easy walkers and rough types that wanna get dirty... So check out these tracks, put on your hiking shoes or jump on your bike."
+        h3.highlight <i class="far fa-heart"></i>   and *important* HAVE FUN</h3>
 
-      .divTracks
-        each track in tracks
+    .sidebar
+      .box
+        h1.boxHeader= "Check out the coolest tracks!"
+        h3="In Pathfinder you find unique tracks. Click here to find out more."
+        p.boxList
+          a(href="/map")
+            <i class="fas fa-flag-checkered"></i>                     go to the map</h3>
+        p.boxList
+          a(href="/")
+            <i class="fas fa-home"></i>                      back to homepage</h3>
+
+      .box
+        h1.boxHeader= "Bonjour! I am Laura"
+        p="I am a newbie webdeveloper and made this website as a final assignment for the Web Dev Course from the New York Coding and Design Academy."
+        figure
+          img(src="images/fotobiking.jpg")
+        div.socialmediaButton
+          a(href="https://www.facebook.com/laurawille77" class="fa fa-facebook")
+          a(href="https://www.linkedin.com/in/laurawille" class="fa fa-linkedin")
+          a(href="https://github.com/Laudylau" class="fa fa-github")
+
+    .article
+      
+      each track in tracks
         
-          .postblock
-            h4#trackname=track.track_name
-            .tags
-              span#trackType=track.track_type
-              span#placeName=track.place_name
-              span#trackKm=track.track_length_km
-            br
-            img(src = track.image_link)
-            p#trackintro=track.intro
+        .postblock
+          h4#trackname=track.track_name
+          .tags
+            span#trackType=track.track_type
+            span#placeName=track.place_name
+            span#trackKm=track.track_length_km
+          img(src = track.image_link)
+          br
+          .trackLink
             a(href= `/tracks/${track.id}`) 
               | Read More &raquo;
-            br
-            br
-  
-  .aside
-    article
-        h2.sectionHeader= "Bonjour! I am Laura"
-        p="Lala something about me"
-        ul.sectionMenu
-          li
-            a(href="/tracks")
-              | Go to the tracks
           br
-          li
-            a(href="/maps")
-              | Go to the map
-
-    
-    article
-        h2.sectionHeader= "Another section"
-        ul.sectionMenu
-          li(a href="/tracks")
-            | Do a thing
-          li(a href="/tracks")
-            | Do another thing
-          li(a href="/tracks")
-            | Do more other things
-  
-  //- section.asideInfo
-  //-   p#asideTitle="hello"
