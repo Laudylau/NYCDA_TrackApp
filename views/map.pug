@@ -37,9 +37,14 @@ block content
   
     .article
       #map
+        
+      
 
 
 block scripts
+  script(type="text/javascript").
+    const maps = !{JSON.stringify(maps)};
+  
   script(src='/scripts/google-map.js')
-  script(defer src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap`)
+  script(defer src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` async)
   

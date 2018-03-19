@@ -2,7 +2,7 @@ extends layout
 
 block content
   
-  div#map
+  .oneTrackMap#map
 
   h1#trackTitle_OneTrack= track.track_name
   .tags
@@ -35,14 +35,15 @@ block content
   div.form_comment
     h3.form_comment_title
       | ------- How did you like this track? --------
-    form(method="post" action=`/tracks/${trackID}`) 
+    form(method="post" action=`/tracks/${track.id}`) 
       div.starRating
         | Rate the track!
-        input(type="radio" id="star1" name="rating" value="1")
-        input(type="radio" id="star2" name="rating" value="2")
-        input(type="radio" id="star3" name="rating" value="3")
-        input(type="radio" id="star4" name="rating" value="4") 
-        input(type="radio" id="star5" name="rating" value="5") 
+        
+        input(type="star" id="star1" name="review_star" value="1")
+        input(type="radio" id="star2" name="review_star" value="2")
+        input(type="radio" id="star3" name="review_star" value="3")
+        input(type="radio" id="star4" name="review_star" value="4") 
+        input(type="radio" id="star5" name="review_star" value="5") 
       div.comment
         textarea(type="text" id="commentText" name="review_text" placeholder="Your feedback here" cols="45" rows="8")
         br
@@ -58,7 +59,7 @@ block content
 block scripts
 
   script(type="text/javascript").
-    const maps = !{JSON.stringify(maps)};
+    const maps = !{JSON.stringify(map)};
 
-  script(src='/scripts/single-map.js' async defer)
-  script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` defer)
+  script(src='/scripts/single-map.js')
+  script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` async)

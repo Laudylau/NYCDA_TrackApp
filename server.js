@@ -103,9 +103,10 @@ server.get("/tracks", async (req, res) => {
 
 // Set the route for the view with a single location - connected to Dbase...NOW IT RUNS THE DBASE, INCLUDING TABLE MAPS
 server.get("/tracks/:trackID", async (req, res) => {
-      // console.log("value 1:", req.params);
+
+      // console.log("value 1:", req.params);  //Should return the object trackID as a string { trackID: 'X' }
       const parsedID = parseInt(req.params.trackID);
-      // console.log("value 2:", parsedID);
+      //console.log("value 2:", parsedID);
 
       const [ track, reviews, map ] = await Promise.all([
         //The question mark represents a parameter that will later be replaced.
@@ -114,13 +115,14 @@ server.get("/tracks/:trackID", async (req, res) => {
           g_db.get(`SELECT * FROM tracks WHERE id = ?`, parsedID),
           g_db.all(`SELECT * FROM reviews WHERE track_id = ? ORDER BY date_posted DESC`, parsedID),
           g_db.get(`SELECT * FROM maps WHERE track_id = ?`, parsedID)
+
       ]);
 
       if (!track) {
           res.status(404).end("Track not found!");
           return;
       }
-      // console.log("value 3:", track);
+      //console.log("value 3:", track);
       //console.log("value 4:", reviews);
       //console.log("value 5:", map);
       res.render("onelocation", {
@@ -132,8 +134,18 @@ server.get("/tracks/:trackID", async (req, res) => {
 
 
 //Set the route for the map view
-server.get('/map', async (req, res) => {
-    res.render('map');
+// server.get('/map', async (req, res) => {
+//     res.render('map');
+// });
+
+//Set the route for the map view
+server.get("/map", async (req, res) => {
+    const maps = await g_db.all(`SELECT * FROM maps`);
+    //console.log("value: ", maps);
+    // const numTracks = g_db.get(`SELECT id FROM maps WHERE ID = (SELECT MAX(id) from maps)`);
+    // console.log(numTracks);
+
+    res.render("map", {maps});
 });
 
 //Set the route for the add track view
@@ -170,23 +182,21 @@ server.post("/addtrack", async (req, res) => {
 
 // Set the route to post reviews to the database. NOT WORKING YET!!!!
 server.post("/tracks/:trackID", (req, res) => {
-  // const parsedID = parseInt(req.params.trackID);
 
-  console.log( "req.params.id", req.params.id, 'req.params.trackID',req.params.trackID);
-  //
-  // console.log(req.params.`${trackID}`.track_id);
-  // console.log("values:",req.params);
+  console.log("value A:", req.params);
+  const trackID = parseInt(req.params.trackID);
 
-  // g_db.run(`
-  //   INSERT INTO reviews
-  //     ( track_id, date_posted, review_text )
-  //   VALUES
-  //     ( $trackID, DATETIME('now'), $review_text )`, {
-  //   $trackID: trackID,
-  //   $review_text: req.body.review_text
-  // });
-  //
-  // res.redirect(`/tracks/${trackID}`);
+  g_db.run(`
+   INSERT INTO reviews
+     ( track_id, date_posted, review_star, review_text )
+   VALUES
+     ( $trackID, DATETIME('now'), $review_star, $review_text )`, {
+   $trackID: trackID,
+   $review_star: req.body.review_star,
+   $review_text: req.body.review_text
+  });
+
+  res.redirect(`/tracks/${trackID}`);
 
 });
 

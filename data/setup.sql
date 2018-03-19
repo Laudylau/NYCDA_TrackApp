@@ -25,19 +25,19 @@ CREATE TABLE maps (
 
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
-  user_name TEXT NOT NULL,
+  user_name TEXT,
   user_mail TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE reviews (
   id INTEGER PRIMARY KEY,
   track_id INTEGER NOT NULL REFERENCES tracks,
-  date_posted TEXT NOT NULL,
-  review_star INTEGER NOT NULL,
-  review_text TEXT NOT NULL,
-  user_id TEXT NOT NULL REFERENCES users,
-  user_name TEXT NOT NULL REFERENCES users,
-  user_mail TEXT NOT NULL REFERENCES users
+  date_posted TEXT,
+  review_star INTEGER,
+  review_text TEXT,
+  user_id TEXT REFERENCES users,
+  user_name TEXT REFERENCES users,
+  user_mail TEXT REFERENCES users
 );
 
 
