@@ -10,6 +10,7 @@ GRID AND OTHER GENERAL PROPERTIES ARE SET IN THE MAIN LAYOUT CSS */
     margin: 15px;
     width: 300px;
     text-align: center;
+    /* background-color: rgb(203, 204, 209); */
     background-color: #E7EBFD;
     color: #273058;
   }

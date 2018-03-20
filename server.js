@@ -1,11 +1,13 @@
-//This is the server file for my final project.
+// THIS IS THE SERVERFILE FOR MY TRACKAPP FOR THE FINAL ASSIGNMENT FROM THE NEW YORK COSING AND DESIGN ACADEMY
+// THIS IS ALSO A LOG. I HAVE A LOT OF COMMENTS FOR MY OWN RECAPTION
 
 // Created a server with the module Express and created a variable called server to store all the express methods in
 const express = require("express");
 const server = express();
 
-// Installed the sqlite module (in the folder is the sqlite3.exe file)
+// Installed the sqlite module (important: place the the sqlite3.exe file in the dbase folder (and hide it in .gitignore))
 const sqlite = require("sqlite");
+// Created a variable to store the dbase
 let g_db = null;
 
 // Required the Node module body-parser to parse incoming request bodies in middleware (through the req.body property)
@@ -16,7 +18,7 @@ server.use(bodyparser.urlencoded({
   extended: true
 }));
 
-// Installed the template engine PUG and store the module in a variable
+// Installed the template engine PUG and stored the module in a variable
 const pug = require("pug");
 
 // Created a variable for the portnumber
@@ -25,7 +27,7 @@ const port = 8080;
 //Set Pug as the view engine
 server.set('view engine', 'pug');
 
-// Created a static folder for all the client side stuff
+// Created a static folder for all the client side stuff like CSS, client-side scripts and images
 server.use(express.static(__dirname + '/public'))
 
 // For testing now an array with objects
@@ -59,12 +61,15 @@ server.use(express.static(__dirname + '/public'))
 //     }
 // }
 
+
+//// --------------------------------------- GET ROUTES -----------------------------------------------------------//////
+
 //Set the route for the main view
 server.get('/', (req, res) => {
     res.render('index');
 });
 
-//Set the route for the view with all the locations - connected to the array as a test! / NOW IT RUNS THE DBASE
+//Set the route for the view with all the locations - connected to the array as a test! / OLS STUFF NOW IT RUNS THE DBASE
 // server.get('/locations', async (req, res) => {
 //     res.render('locations', {locations: Object.values(locationDatabase)});   // in between curly braces is the optional parameter to pass local variables to the view through an object
 // });
@@ -73,17 +78,9 @@ server.get('/', (req, res) => {
 server.get("/tracks", async (req, res) => {
     const tracks = await g_db.all(`
     SELECT
-      id,
-      track_name,
-      place_name,
-      region_name,
-      track_type,
-      track_length_km,
-      track_length_time,
-      track_level,
-      intro,
-      description,
-      image_link
+      id, track_name, place_name, region_name,
+      track_type, track_length_km, track_length_time,
+      track_level, intro, description, image_link
     FROM tracks
   `);
   //console.log(tracks);
@@ -101,7 +98,7 @@ server.get("/tracks", async (req, res) => {
 //     res.render('onelocation', location);
 // });
 
-// Set the route for the view with a single location - connected to Dbase...NOW IT RUNS THE DBASE, INCLUDING TABLE MAPS
+// Set the route for the view with a single location - connected to Dbase...- connected to the Padvinder Database :-)!
 server.get("/tracks/:trackID", async (req, res) => {
 
       // console.log("value 1:", req.params);  //Should return the object trackID as a string { trackID: 'X' }
@@ -153,7 +150,10 @@ server.get('/addtrack', async (req, res) => {
     res.render('addtrack');
 });
 
-//Set the route to post the added track to the dbase and then show it in. NOW IT RUNS THE DBASE
+
+//// --------------------------------------- POST ROUTES -----------------------------------------------------------//////
+
+//Set the route to post the added track to the dbase and then show it in. - connected to the Padvinder Database :-)!
 server.post("/addtrack", async (req, res) => {
 
   await g_db.run(`
@@ -173,6 +173,9 @@ server.post("/addtrack", async (req, res) => {
     $image_link: req.body.image_link
   });
 
+
+
+
   // get the trackID assigned to the just created track
   const { trackID } = await g_db.get("SELECT LAST_INSERT_ROWID() AS trackID");
 
@@ -188,18 +191,22 @@ server.post("/tracks/:trackID", (req, res) => {
 
   g_db.run(`
    INSERT INTO reviews
-     ( track_id, date_posted, review_star, review_text )
+     ( track_id, date_posted, review_star, review_text, user_name, user_mail )
    VALUES
-     ( $trackID, DATETIME('now'), $review_star, $review_text )`, {
+     ( $trackID, DATETIME('now'), $review_star, $review_text, $user_name, $user_mail )`, {
    $trackID: trackID,
    $review_star: req.body.review_star,
-   $review_text: req.body.review_text
+   $review_text: req.body.review_text,
+   $user_name: req.body.user_name,
+   $user_mail: req.body.user_mail
   });
 
   res.redirect(`/tracks/${trackID}`);
 
 });
 
+
+// ----------------------------------- OPEN PORT AND CONNECT TO DATABASE ----------------------------------------------
 
 // Set up port for server, always at the bottom of the file so the server will only start listening when all the modules are loaded and routes are created
 // server.listen(port, () => console.log(`Server listening to port ${port}!`));

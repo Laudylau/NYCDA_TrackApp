@@ -2,7 +2,7 @@
   .oneTrackMap {
     display: block;
     width: 100%;
-    height: 150px;
+    height: 200px;
     margin: 0px;
     padding: 0px;
   }
@@ -14,39 +14,65 @@
   }
 
   #trackTitle_OneTrack {
-    margin: 20px;
+    margin-bottom: 0px;
     text-align: center;
     background-color: #E7EBFD;
     color: #273058;
     padding: 25px;
   }
 
-  .tags {
-    margin: 20px;
+  /* .headTrackInfoTwo {
+    margin-bottom: 0px;
     text-align: center;
+    background-color: #E7EBFD;
+    color: #273058;
+    padding: 25px;
+  } */
+
+  .tags {
+    margin: 0px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: #E7EBFD;
+  }
+
+  #rateTags {
+    margin-top: 10px;
   }
 
   figure img {
     float: left;
-    width: 400px;
-    heigth: 300px;
-    padding: 20px;
+    width: 300px;
+    heigth: 200px;
+    padding-left: 0px;
+    padding-right: 20px;
+  }
+
+  #imgOneTrack {
+    width: 100%;
   }
 
   #trackIntro {
-    font-size: 24px;
     font-weight: bold;
-    padding-left: 50px;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #E7EBFD;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    text-align: center;
   }
 
   #trackDescription {
-    font-size: 18px;
-    padding-right: 50px;
+    padding-right: 20px;
     padding-left: 50px;
+    padding-bottom: 50px;
+    background-color: #E7EBFD;
+    margin-top: 0px;
   }
 
   #reviewTitlebar {
-    margin: 20px;
+    margin: 0px;
     text-align: center;
     background-color: #E7EBFD;
     color: #273058;
@@ -69,4 +95,10 @@
   }
   .rating {
     content: '★'
+  }
+
+  #reviewStar {
+    font-size: 24px;
+    color: red;
+    margin-top: 0px;
   }

@@ -2,56 +2,102 @@ extends layout
 
 block content
   
-  .oneTrackMap#map
-
-  h1#trackTitle_OneTrack= track.track_name
-  .tags
-    span#trackType=track.track_type
-    span#regionName=track.region_name
-    span#placeName=track.place_name
-    span#trackKm=track.track_length_km
-    span#trackTime=track.track_length_time
-    span#trackLevel=track.track_level
-  
-  section.trackInfo
-    article
-      figure
-        img(src = track.image_link)
-      p#trackIntro= track.intro
-      p#trackDescription= track.description
-      a(href='/tracks') 
-          | Back to all tracks &raquo;
-
-  section.showReviews
-    h1#reviewTitlebar="Check out here reviews of other hikers and bikers!"
-    each review in reviews
-      .reviewUnique
-        .spanReviews
-          span#datePosted=review.date_posted
-        p#reviewText=review.review_text
-        p#reviewStar=review.review_star
-          | Rating (1=Horrible --- 5=Amazing!!: )
-  
-  div.form_comment
-    h3.form_comment_title
-      | ------- How did you like this track? --------
-    form(method="post" action=`/tracks/${track.id}`) 
-      div.starRating
-        | Rate the track!
+  .container
+    
+    .article
+      .headTrackInfo
+        h1#trackTitle_OneTrack= track.track_name
+        .oneTrackMap#map
+        h3#trackIntro= track.intro
+        .tags#tags_OneTrack
+          span#trackType=track.track_type
+          span#regionName=track.region_name
+          span#placeName=track.place_name
+          span#trackKm=track.track_length_km
+          span#trackTime=track.track_length_time
+          span#trackLevel=track.track_level
+        p#trackDescription= track.description
+    
         
-        input(type="star" id="star1" name="review_star" value="1")
-        input(type="radio" id="star2" name="review_star" value="2")
-        input(type="radio" id="star3" name="review_star" value="3")
-        input(type="radio" id="star4" name="review_star" value="4") 
-        input(type="radio" id="star5" name="review_star" value="5") 
-      div.comment
-        textarea(type="text" id="commentText" name="review_text" placeholder="Your feedback here" cols="45" rows="8")
-        br
-        input(type="text" id="commentAuthor" placeholder="Name" size="50")
-        input(type="email" id="commentAuthorMail" placeholder="E-mail" size="50")
-        br
-        input(type="submit" name="submit" placeholder="Submit")
-        br
+      .mainTrackInfo
+        
+        //- figure
+        img#imgOneTrack(src = track.image_link)
+          //- article
+          //-   figure
+          //-     img(src = track.image_link)
+            
+            //- p#trackDescription= track.description
+            a(href='/tracks') 
+                | Back to all tracks &raquo;
+
+    .sidebar
+        
+      .box
+        h1.boxHeader= "Check out the coolest tracks!"
+        h3="In Pathfinder you find unique tracks. Click here to find out more."
+        p.boxList
+          a(href="/map")
+            <i class="fas fa-flag-checkered"></i>                     go to the map</h3>
+        p.boxList
+          a(href="/")
+            <i class="fas fa-home"></i>                      back to homepage</h3>
+      
+      .box
+        h1.boxHeader= "Bonjour! I am Laura"
+        p="I am a newbie webdeveloper and made this website as a final assignment for the Web Dev Course from the New York Coding and Design Academy."
+        figure
+          img(src="images/fotobiking.jpg")
+        div.socialmediaButton
+          a(href="https://www.facebook.com/laurawille77" class="fa fa-facebook")
+          a(href="https://www.linkedin.com/in/laurawille" class="fa fa-linkedin")
+          a(href="https://github.com/Laudylau" class="fa fa-github")
+          
+    .article
+      
+      .showReviews
+        h1#reviewTitlebar="Check out here reviews of other hikers and bikers!"
+        each review in reviews
+          .reviewUnique
+            #rateTags
+              span#datePosted=review.date_posted
+              span#reviewUserName=review.user_name
+            p#reviewText=review.review_text
+            //- p#reviewStar=review.review_star
+            //-   | Rating (1=Horrible --- 5=Amazing!!: )
+            -
+              let stars = "";
+              for (let i = 0; i < review.review_star; i++) {
+                //stars += '<img src="star.jpg">';
+                stars += "✮";
+              }
+            p#reviewStar !{stars}
+          
+
+        //- script(async defer).
+        //-   numStarsRate(!{review.review_star});
+
+          
+      div.form_comment
+      h3.form_comment_title
+        | ------- How did you like this track? --------
+      form(method="post" action=`/tracks/${track.id}`) 
+        div.starRating
+          | Rate the track!
+          
+          input(type="radio" id="star1" name="review_star" value="1")
+          input(type="radio" id="star2" name="review_star" value="2")
+          input(type="radio" id="star3" name="review_star" value="3")
+          input(type="radio" id="star4" name="review_star" value="4") 
+          input(type="radio" id="star5" name="review_star" value="5") 
+        div.comment
+          textarea(type="text" id="commentText" name="review_text" placeholder="Your feedback here" cols="45" rows="8")
+          br
+          input(type="text" id="commentAuthor" name="user_name" placeholder="Name" size="50")
+          input(type="email" id="commentAuthorMail" name="user_mail" placeholder="E-mail" size="50")
+          br
+          input(type="submit" name="submit" placeholder="Submit")
+          br
         
 
         
@@ -59,7 +105,16 @@ block content
 block scripts
 
   script(type="text/javascript").
+    
     const maps = !{JSON.stringify(map)};
+    //- //- const review = !{JSON.stringify(reviews)};
+    //- 
+    //- document.addEventListener("DOMContentLoaded", function() {
+    //-     numstarsRate().toString();
+    //- });
+    
 
   script(src='/scripts/single-map.js')
   script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyB4GRRyCuOb5nvrXsCMtmfgaHzv2ogfRdQ&callback=initMap` async)
+
+    

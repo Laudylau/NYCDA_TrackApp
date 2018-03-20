@@ -5,14 +5,18 @@ FINAL ASSIGNMENT NYCDA */
 
   body {
     font-family: Noto Sans;
-    color: #273058;
-    background-color: #FDF9E7;
+    color: rgb(111, 104, 94);
+    /* color: #273058; */
+    /* background-color: #E7EBFD; */
+    background-color: rgb(203, 204, 209);
+    /* background-color: #FDF9E7; */
     margin: 0px;
   }
 
   h1 {
     font-size: 1.5em;
-    color: #D64933;
+    color: #273058;
+    /* color: #D64933; */
   }
 
   h2 {
@@ -30,10 +34,13 @@ FINAL ASSIGNMENT NYCDA */
 
   a {
     text-decoration: none;
+    color: #273058;
+    /* color: rgb(245, 132, 198); */
   }
 
   .highlight {
-    color: #D64933;
+    color: rgb(188, 135, 2);
+    /* color: #D64933; */
     padding-left: 3em;
   }
 
@@ -41,10 +48,11 @@ FINAL ASSIGNMENT NYCDA */
 
   .box {
     border: solid;
-    border-radius: 0.5em;
-    border-color: #273058;
+    /* border-radius: 0.2em; */
+    /* border-color: #273058; */
     padding: 0.5em;
-    background-color: #EEC414;
+    background-color: rgb(190, 166, 93);
+    /* background-color: #EEC414; */
   }
 
   .boxList {
@@ -169,7 +177,8 @@ FINAL ASSIGNMENT NYCDA */
     margin: 0px;
     font-family: Permanent Marker;
     font-size: 70px;
-    color: #D64933;
+    color: rgb(111, 104, 94);
+    /* color: #D64933; */
     text-align: center;
   }
 
@@ -178,7 +187,8 @@ FINAL ASSIGNMENT NYCDA */
     list-style-type: none;      /*The list-style-type specifies the type of list-item marker in a list.*/
     margin: 0;
     overflow: hidden;           /*What should happen if content overflows an element's box. Hidden doesn't show the overflow*/
-    background-color: #EEC414;
+    background-color: rgb(190, 166, 93);
+    /* background-color: #EEC414; */
     text-align: center;
   }
 

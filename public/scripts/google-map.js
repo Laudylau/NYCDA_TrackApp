@@ -1,4 +1,5 @@
-
+// This is linked to the Dbase Padvinder.sqlite3 now! In the table maps.
+// This is shown on the clientside through the get request that renders the map pug
 
 // Create a global variable to store an array of the table objects of maps
 const g_arrayMaps = maps;
@@ -16,13 +17,6 @@ function initMap() {
 }
 
 
-// let g_castles = [
-//   [1, 'Chateau de Monbazillac', 44.7966125, 0.4919465, 'lalala1'],
-//   [2, 'Chateau de Bridoire', 44.7965911, 0.4240952, 'lalala2']
-// ];
-
-
-
 function setMarkers(map) {
   // Adds markers to the map.
 
@@ -36,23 +30,42 @@ function setMarkers(map) {
 
   for (let i = 0; i < g_numTracks; i++) {
     let oneTrackMarker = g_arrayMaps[i];
-    console.log(oneTrackMarker); // Returns an object of per table row in the loop starting with id 1
+    console.log("value: A ", oneTrackMarker); // Returns an object of per table row in the loop starting with id 1
     //const trackGeoLat = oneTrackMarker.start_lat; OVERBODIG
     //const trackGeoLong = oneTrackMarker.start_long; OVERBODIG
     const trackGeo = {lat: oneTrackMarker.start_lat, lng: oneTrackMarker.start_long};
-    const trackStart = oneTrackMarker.start_point_name;
+
     //console.log("value: ", trackGeoLat); // Returns the lat per table row in the loop starting with id 1 //OVERBODIG
     //console.log("value: ", trackGeoLong); // Returns the long per table row in the loop starting with id 1 //OVERBODIG
-    console.log("value: ", trackGeo);
-    //console.log("value: ", trackStart);
+    //console.log("value: B", trackGeo);
+
     let marker = new google.maps.Marker({
       position: trackGeo,
       map: map,
       //icon: image,
     });
 
+    const trackName = oneTrackMarker.track_name;
+    //console.log("value: C", trackName);
+    const trackStart = oneTrackMarker.start_point_name;
+    //console.log("value: D", trackStart);
+    const trackLink = oneTrackMarker.start_website;
+    //console.log("value: E", trackLink);
+    const trackID = oneTrackMarker.track_id;
+    //console.log("value: F", trackID);
+
+    const contentString =
+                `<div id="content"></div>` +
+                  //`<div id="siteNotice">` +
+                  `<h1 id="firstHeading" class="firstHeading"> ${trackName}</h1>` +
+                  `<div id="bodyContent">`+
+                    `<h3><b>Startingpoint: ${trackStart}</b></h3>`+
+                    `<p><a href = "${trackLink}">Click here for website startingpoint! </a></p>` +
+                    `<p><a href= "/tracks/${trackID}">Click here for more info about this track!</a></p>` +
+                  `</div>`;
+
     let infowindow = new google.maps.InfoWindow({
-            content: trackStart
+            content: contentString
     });
     marker.addListener('click', function() {
           infowindow.open(map, marker);

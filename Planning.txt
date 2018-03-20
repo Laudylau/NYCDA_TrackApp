@@ -35,3 +35,8 @@ Week 2:
 Week 4: to do
 - fill in metas in head of layout pug
 - put all the ccs in a file together (so not inline)
+
+
+
+
+insert into multiple table from one form ( so one post route)
