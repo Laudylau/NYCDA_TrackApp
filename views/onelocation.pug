@@ -56,7 +56,7 @@ block content
     .article
       
       .showReviews
-        h1#reviewTitlebar="Check out here reviews of other hikers and bikers!"
+        h1#reviewTitlebar="Check out reviews of other hikers and bikers!"
         each review in reviews
           .reviewUnique
             #rateTags
@@ -79,17 +79,29 @@ block content
 
           
       div.form_comment
-      h3.form_comment_title
-        | ------- How did you like this track? --------
+      h1.form_comment_title
+        | ------- Did you explore this track? Please rate it here! --------
       form(method="post" action=`/tracks/${track.id}`) 
         div.starRating
           | Rate the track!
-          
-          input(type="radio" id="star1" name="review_star" value="1")
-          input(type="radio" id="star2" name="review_star" value="2")
-          input(type="radio" id="star3" name="review_star" value="3")
-          input(type="radio" id="star4" name="review_star" value="4") 
-          input(type="radio" id="star5" name="review_star" value="5") 
+          br
+          br
+          span#labelReviewStar
+            | Horrible
+            input(type="radio" id="star1" name="review_star" value="1")
+          span#labelReviewStar
+            | Mwahhh
+            input(type="radio" id="star2" name="review_star" value="2")
+          span#labelReviewStar
+            | Fine track
+            input(type="radio" id="star3" name="review_star" value="3")
+          span#labelReviewStar
+            | Check this track out!
+            input(type="radio" id="star4" name="review_star" value="4") 
+          span#labelReviewStar
+            | OMG, fucking amazing!!!
+            input(type="radio" id="star5" name="review_star" value="5") 
+        br
         div.comment
           textarea(type="text" id="commentText" name="review_text" placeholder="Your feedback here" cols="45" rows="8")
           br

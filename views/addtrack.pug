@@ -37,29 +37,51 @@ block content
       form.addTrackForm(method="post" action="/addtrack")  
         .label
           | Track:
-          input(type="text" name="track_name" placeholder="A short title for this track" size="50")
+          input.inputField(type="text" name="track_name" placeholder="Type a short title for this track" size="100")
+        br
         .label
           | Place:
-          input(type="text" name="place_name" placeholder="Where did you start the track" size="50")
+          input(type="text" name="place_name" placeholder="Where did you start the track" size="100")
         .label
           | Region:
-          input(type="text" name="region_name" placeholder="What is the region of this track?" size="50")
+        input(type="text" name="region_name" placeholder="What is the region of this track?" size="50")
+        .label
+          | Starting point:
+          input(type="text" name="start_point_name" placeholder="Where did you start the track, fr chateau this or that" size="100")
+        .label
+          | Starting point latitude:
+          input(type="text" name="start_lat" placeholder="What is the latitude of the starting point" size="100")
+        .label
+          | Starting point longitude:
+          input(type="text" name="start_long" placeholder="What is the longitude of the starting point" size="100")        
+        .label
+          | Website of the starting point:
+          input(type="text" name="start_website" placeholder="type url here" size="100")  
+        //- .label
+        //-   | InfowindowText:
+        //-   input(type="text" name="infoWindowText" placeholder="type url here" size="100")          
         .label
           | Type:  
-          input(type="text" name="track_type" placeholder="f.e. walk, hike or bike?" size="50")
+        input(type="text" name="track_type" placeholder="f.e. walk, hike or bike?" size="50")
         .label
           | Length:  
-          input(type="text" name="track_length_km" placeholder="How many kilometers is the track, f.e. 8 km" size="50")
+        input(type="text" name="track_length_km" placeholder="How many kilometers is the track, f.e. 8 km" size="50")
         .label
           | Hours: 
-          input(type="text" name="track_length_time" placeholder="Fill in the estimated time to complete this track, f.e. 6 hours" size="50")
+        input(type="text" name="track_length_time" placeholder="Fill in the estimated time to complete this track, f.e. 6 hours" size="50")
         .label
           | Level: 
         input(type="text" name="track_level" placeholder="Choose easy, medium, " size="50")
+        .label
+          | Introtext: 
         textarea(type="text" name="intro" placeholder="Write a short intro here" cols="45" rows="8")
+        .label
+          | Trackdescription: 
         textarea(type="text" name="description" placeholder="Write a short description here" cols="45" rows="8")
-        input(type="text" name="image_link" placeholder="Add a picture with an URL" size="50")
-        input(type="submit" name="submit" placeholder="Submit")
+        .label
+          | Link an image:
+          input(type="text" name="image_link" placeholder="Add a picture with an URL" size="50")
+        input(type="submit" name="submit" placeholder="Create your track!")
             
       
         

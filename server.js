@@ -156,7 +156,7 @@ server.get('/addtrack', async (req, res) => {
 //Set the route to post the added track to the dbase and then show it in. - connected to the Padvinder Database :-)!
 server.post("/addtrack", async (req, res) => {
 
-  await g_db.run(`
+  const addedTrack = await g_db.run(`
     INSERT INTO tracks
       ( track_name, place_name, region_name, track_type, track_length_km, track_length_time, track_level, intro, description, image_link, date_created )
     VALUES
@@ -173,11 +173,26 @@ server.post("/addtrack", async (req, res) => {
     $image_link: req.body.image_link
   });
 
-
-
-
   // get the trackID assigned to the just created track
   const { trackID } = await g_db.get("SELECT LAST_INSERT_ROWID() AS trackID");
+  console.log(trackID);
+  console.log(req.body);
+  console.log(req.params);
+
+  await g_db.run(`
+    INSERT INTO maps
+      ( track_id, track_name, start_point_name, start_lat, start_long, start_website, infoWindowText )
+    VALUES
+      ( $track_id, $track_name, $start_point_name, $start_lat, $start_long, $start_website, $infoWindoWText )`, {
+    $track_id: trackID,
+    $track_name: req.body.track_name,
+    $start_point_name: req.body.start_point_name,
+    $start_lat: req.body.start_lat,
+    $start_long: req.body.start_long,
+    $start_website: req.body.start_website,
+    $infoWindoWText: req.body.intro
+  });
+
 
   res.redirect(`/tracks/${trackID}`);
 });

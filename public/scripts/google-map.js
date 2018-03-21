@@ -9,7 +9,7 @@ const g_numTracks = parseInt(g_arrayMaps.length);
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
+    zoom: 11,
     center: {lat: 44.8519085, lng: 0.418257}
   });
 
@@ -53,11 +53,14 @@ function setMarkers(map) {
     //console.log("value: E", trackLink);
     const trackID = oneTrackMarker.track_id;
     //console.log("value: F", trackID);
+    const trackInfo = oneTrackMarker.infoWindowText;
+    console.log("value: G", trackInfo);
 
     const contentString =
                 `<div id="content"></div>` +
                   //`<div id="siteNotice">` +
                   `<h1 id="firstHeading" class="firstHeading"> ${trackName}</h1>` +
+                  `<p> ${trackInfo}</p>` +
                   `<div id="bodyContent">`+
                     `<h3><b>Startingpoint: ${trackStart}</b></h3>`+
                     `<p><a href = "${trackLink}">Click here for website startingpoint! </a></p>` +
