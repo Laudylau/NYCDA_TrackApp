@@ -1,80 +1,35 @@
-// THIS IS THE SERVERFILE FOR MY TRACKAPP FOR THE FINAL ASSIGNMENT FROM THE NEW YORK COSING AND DESIGN ACADEMY
-// THIS IS ALSO A LOG. I HAVE A LOT OF COMMENTS FOR MY OWN RECAPTION
+// THIS IS THE SERVERFILE FOR MY TRACKAPP FOR THE FINAL ASSIGNMENT FROM THE NEW YORK CODING AND DESIGN ACADEMY
 
-// Created a server with the module Express and created a variable called server to store all the express methods in
 const express = require("express");
 const server = express();
-
-// Installed the sqlite module (important: place the the sqlite3.exe file in the dbase folder (and hide it in .gitignore))
 const sqlite = require("sqlite");
-// Created a variable to store the dbase
+const bodyparser = require("body-parser");
+const pug = require("pug");
+const port = 8080;
+
+// Variable to store the dbase
 let g_db = null;
 
-// Required the Node module body-parser to parse incoming request bodies in middleware (through the req.body property)
-const bodyparser = require("body-parser");
 
-// Created the middleware for the bodyparser
+// Middleware for the bodyparser
 server.use(bodyparser.urlencoded({
   extended: true
 }));
 
-// Installed the template engine PUG and stored the module in a variable
-const pug = require("pug");
-
-// Created a variable for the portnumber
-const port = 8080;
-
-//Set Pug as the view engine
+//View engine
 server.set('view engine', 'pug');
 
-// Created a static folder for all the client side stuff like CSS, client-side scripts and images
+// Static folder for all the client side stuff like CSS, client-side scripts and images
 server.use(express.static(__dirname + '/public'))
-
-// For testing now an array with objects
-// NOW IT RUNS ON THE DBASE
-// let locationDatabase = {
-//     1: {
-//         id: 1,
-//         name: "Chateau de Mobazillac",
-//         text: "This is a BIG castle.",
-//         image: "http://www.sarlat-tourisme.com/sites/default/files/sirtaqui_files/33f769540442d94ba4db1bca7f636989.jpg",
-//         latitude: 44.7966125,
-//         langitude: 0.4919465
-//     },
-//
-//     2: {
-//         id: 2,
-//         name: "Chateau de Bridoire",
-//         text: "Knights like fighting",
-//         image: "http://static.panoramio.com/photos/large/92605638.jpg",
-//         latitude: 44.7965911,
-//         langitude: 0.4240952
-//     },
-//
-//     3: {
-//         id: 3,
-//         name: "Chateau de Castelnaud",
-//         text: "That is a nice view!",
-//         image: "http://www.perigordnoir-valleedordogne.com/sites/default/files/galleries/castelnaud.jpg",
-//         latitude: 44.7965827,
-//         langitude: 0.4250942
-//     }
-// }
-
 
 //// --------------------------------------- GET ROUTES -----------------------------------------------------------//////
 
-//Set the route for the main view
+//Route for the landingpage
 server.get('/', (req, res) => {
     res.render('index');
 });
 
-//Set the route for the view with all the locations - connected to the array as a test! / OLS STUFF NOW IT RUNS THE DBASE
-// server.get('/locations', async (req, res) => {
-//     res.render('locations', {locations: Object.values(locationDatabase)});   // in between curly braces is the optional parameter to pass local variables to the view through an object
-// });
-
-//Set the route for the view with all the locations - connected to the Padvinder Database :-)!
+//Route for the all locations page
 server.get("/tracks", async (req, res) => {
     const tracks = await g_db.all(`
     SELECT
@@ -88,31 +43,15 @@ server.get("/tracks", async (req, res) => {
 });
 
 
-// //Set the route for the view with a single location - connected to the array as a test! / NOW IT RUNS THE DBASE
-// server.get('/tracks/:id', async (req, res) => {
-//     const location = locationDatabase[req.params.id];
-//     if(!location) {           //is the following maybe a stricter solution: if (typeof location === 'undefined' || location === null) {
-//         res.redirect('/tracks');
-//         return;
-//     }
-//     res.render('onelocation', location);
-// });
-
-// Set the route for the view with a single location - connected to Dbase...- connected to the Padvinder Database :-)!
+// Route for the single location page
 server.get("/tracks/:trackID", async (req, res) => {
-
       // console.log("value 1:", req.params);  //Should return the object trackID as a string { trackID: 'X' }
       const parsedID = parseInt(req.params.trackID);
       //console.log("value 2:", parsedID);
-
       const [ track, reviews, map ] = await Promise.all([
-        //The question mark represents a parameter that will later be replaced.
-        // Using parameterized queries is more secure than embedding the parameters right into the query.
-        //database get is for selecting 1 row out the table, all is to select all rows.
           g_db.get(`SELECT * FROM tracks WHERE id = ?`, parsedID),
           g_db.all(`SELECT * FROM reviews WHERE track_id = ? ORDER BY date_posted DESC`, parsedID),
           g_db.get(`SELECT * FROM maps WHERE track_id = ?`, parsedID)
-
       ]);
 
       if (!track) {
@@ -129,23 +68,15 @@ server.get("/tracks/:trackID", async (req, res) => {
       });
 });
 
-
-//Set the route for the map view
-// server.get('/map', async (req, res) => {
-//     res.render('map');
-// });
-
-//Set the route for the map view
+//Route for the map page
 server.get("/map", async (req, res) => {
     const maps = await g_db.all(`SELECT * FROM maps`);
     //console.log("value: ", maps);
-    // const numTracks = g_db.get(`SELECT id FROM maps WHERE ID = (SELECT MAX(id) from maps)`);
-    // console.log(numTracks);
 
     res.render("map", {maps});
 });
 
-//Set the route for the add track view
+//Route for the add track page
 server.get('/addtrack', async (req, res) => {
     res.render('addtrack');
 });
@@ -153,7 +84,7 @@ server.get('/addtrack', async (req, res) => {
 
 //// --------------------------------------- POST ROUTES -----------------------------------------------------------//////
 
-//Set the route to post the added track to the dbase and then show it in. - connected to the Padvinder Database :-)!
+// Route to post the added track to the dbase
 server.post("/addtrack", async (req, res) => {
 
   const addedTrack = await g_db.run(`
@@ -193,12 +124,11 @@ server.post("/addtrack", async (req, res) => {
     $infoWindoWText: req.body.intro
   });
 
-
   res.redirect(`/tracks/${trackID}`);
+
 });
 
-
-// Set the route to post reviews to the database. NOT WORKING YET!!!!
+// Route to post reviews to the database.
 server.post("/tracks/:trackID", (req, res) => {
 
   console.log("value A:", req.params);
@@ -223,11 +153,6 @@ server.post("/tracks/:trackID", (req, res) => {
 
 // ----------------------------------- OPEN PORT AND CONNECT TO DATABASE ----------------------------------------------
 
-// Set up port for server, always at the bottom of the file so the server will only start listening when all the modules are loaded and routes are created
-// server.listen(port, () => console.log(`Server listening to port ${port}!`));
-// NOW IT RUNS ON THE DBASE
-
-//Connect database to the server and open port
 sqlite.open(`data/padvinder.sqlite3`)
   .then(db => {
     g_db = db;
