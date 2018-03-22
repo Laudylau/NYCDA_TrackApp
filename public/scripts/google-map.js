@@ -54,7 +54,7 @@ function setMarkers(map) {
     const trackID = oneTrackMarker.track_id;
     //console.log("value: F", trackID);
     const trackInfo = oneTrackMarker.infoWindowText;
-    console.log("value: G", trackInfo);
+    // console.log("value: G", trackInfo);
 
     const contentString =
                 `<div id="content"></div>` +
@@ -68,7 +68,8 @@ function setMarkers(map) {
                   `</div>`;
 
     let infowindow = new google.maps.InfoWindow({
-            content: contentString
+            content: contentString,
+            maxWidth: 300
     });
     marker.addListener('click', function() {
           infowindow.open(map, marker);

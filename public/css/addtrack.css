@@ -7,9 +7,10 @@
 form {
   padding: 30px;
   margin-left: 0px;
-  background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  /* background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
   background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
-  background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px); */
+  background-color: #E7EBFD;
   margin: auto;
   /* width: 550px; */
   /* height: 450px; */
@@ -29,6 +30,6 @@ textarea {
   margin: 5px;
 }
 
-.inputField {
+/* .inputField {
    margin-left: 150px;
-}
+} */

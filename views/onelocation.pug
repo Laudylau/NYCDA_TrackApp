@@ -1,3 +1,6 @@
+//- VIEW TEMPLATE FOR THE ONETRACK ROUTE
+//- FINAL ASSIGNMENT NYCDA
+
 extends layout
 
 block content
@@ -21,15 +24,8 @@ block content
         
       .mainTrackInfo
         
-        //- figure
         img#imgOneTrack(src = track.image_link)
-          //- article
-          //-   figure
-          //-     img(src = track.image_link)
-            
-            //- p#trackDescription= track.description
-            a(href='/tracks') 
-                | Back to all tracks &raquo;
+
 
     .sidebar
         
@@ -106,7 +102,6 @@ block content
           textarea(type="text" id="commentText" name="review_text" placeholder="Your feedback here" cols="45" rows="8")
           br
           input(type="text" id="commentAuthor" name="user_name" placeholder="Name" size="50")
-          input(type="email" id="commentAuthorMail" name="user_mail" placeholder="E-mail" size="50")
           br
           input(type="submit" name="submit" placeholder="Submit")
           br
